@@ -1,0 +1,13 @@
+import com.runstate.augur.*;
+import com.runstate.augur.gallery.*;
+import com.runstate.augur.ui.*;
+import com.runstate.augur.ui.desktop.*;
+import com.runstate.augur.views.*;
+import com.runstate.augur.commands.*;
+import com.runstate.augur.cix.commands.*;
+
+ad=AugurDesktop.getInstance();
+gl=Central.getGallery();
+
+
+
