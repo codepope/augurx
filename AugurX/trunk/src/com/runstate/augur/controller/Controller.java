@@ -247,7 +247,9 @@ public class Controller implements GalleryEventListener,AugurPanelManagerListene
 	{
 		JFrame starting=null;
                 
-                int pending=gallery.getPendingCommandsCount();
+                int pending=0;
+                
+                if (gallery != null) pending=gallery.getPendingCommandsCount();
                 
 		int rv=0;
                 if (pending > 0)
@@ -278,6 +280,7 @@ public class Controller implements GalleryEventListener,AugurPanelManagerListene
 			if(AugurPanelManger.getManager().shutdown())
 			{
 				if(gallery!=null) gallery.shutdown();
+                                gallery=null;
 			}
 			else
 			{
