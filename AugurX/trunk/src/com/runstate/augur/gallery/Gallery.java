@@ -1240,6 +1240,11 @@ public  class Gallery {
     }
     
     public int getPendingCommandsCount() {
+        if (getPendingCommandCountPstmt == null)
+        {
+            return 0;
+        }
+        
         try {
             ResultSet rs=getPendingCommandCountPstmt.executeQuery();
             rs.next();

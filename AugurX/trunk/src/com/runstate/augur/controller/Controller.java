@@ -238,18 +238,17 @@ public class Controller implements GalleryEventListener,AugurPanelManagerListene
 	}
 	
 	
-	public void prefsClosed()
-	{
-		mode=STARTGALLERY;
-	}
-	
 	public void closedown()
 	{
 		JFrame starting=null;
                 
                 int pending=0;
                 
-                if (gallery != null) pending=gallery.getPendingCommandsCount();
+                try
+                {
+                    if (gallery != null) pending=gallery.getPendingCommandsCount();
+                }
+                catch(GalleryException ge) {}
                 
 		int rv=0;
                 if (pending > 0)
