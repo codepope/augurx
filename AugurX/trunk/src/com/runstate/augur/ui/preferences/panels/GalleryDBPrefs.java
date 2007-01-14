@@ -36,7 +36,7 @@ public class GalleryDBPrefs extends ManagedPrefPanel
 		add(BorderLayout.CENTER,lip);
 		
 		registerPrefItem(dburl,Prefs.G_DBURL,"");
-		registerPrefItem(username,Prefs.G_DBUSER,"");
+		registerPrefItem(username,Prefs.G_DBUSER,"sa");
 		registerPrefItem(password,Prefs.G_DBPASS,"");
 		registerPrefItem(shutdownremote,Prefs.G_HSQL_OFFERSHUTDOWN,"false");
 		registerPrefItem(compactdb,Prefs.G_HSQL_COMPACT,"false");
