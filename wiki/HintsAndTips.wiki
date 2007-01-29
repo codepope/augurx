@@ -1,0 +1,11 @@
+=Hints and Tips=
+
+== Browser configuration ==
+When running on Linux http links won't work unless your preferred browser is configured in Gnome. If using firefox something like 
+{{{
+gconftool --type string --set /desktop/gnome/url-handlers/http/command '/usr/bin/firefox "%s"' 
+}}}
+should do the job but you do need to specify the correct full path.
+
+
+
