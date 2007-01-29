@@ -11,3 +11,7 @@ svn checkout http://augurx.googlecode.com/svn/AugurX/trunk/ augurx
 Netbeans can be downloaded from
 
 http://www.netbeans.info/downloads/index.php - if you don't have a JDK installed then it is best to pick the bundle that includes JDK 5.
+
+= Running AugurX =
+
+There are some hints on running AugurX on the HintsAndTips page.
