@@ -1,0 +1,13 @@
+= Introduction =
+
+AugurX is an OLR (offline reader) that is designed to support multiple message sources but currently only suports Cix.
+
+= Details =
+
+As there aren't any binary releases available yet if you want to try it out you'll need to download the source with svn and then run it with netbeans
+{{{
+svn checkout http://augurx.googlecode.com/svn/AugurX/trunk/ augurx
+}}}
+Netbeans can be downloaded from
+
+http://www.netbeans.info/downloads/index.php - if you don't have a JDK installed then it is best to pick the bundle that includes JDK 5.
