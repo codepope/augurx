@@ -581,6 +581,7 @@ public class Browser extends AugurPanel implements
         navLayout.show(navpanel,modenames[NAV_AUTHORS]);
         displayLayout.show(displayPanel,modenames[NAV_AUTHORS]);
         navpanel.requestFocus();
+        authorsNavigator.unselect();
         updateMenus();
     }
     
@@ -613,8 +614,9 @@ public class Browser extends AugurPanel implements
     }
     
     public void cmdShowUser(String auguraddress) {
-        cmdSwitchToAuthors();
-        authorsView.showUser(auguraddress);
+        if (authorsView.showUser(auguraddress)) {
+            cmdSwitchToAuthors();
+        }
     }
     
     public void cmdUndo() {
@@ -925,7 +927,7 @@ public class Browser extends AugurPanel implements
             }
             if (parsablecommand.startsWith("@author(")) {
                 String useraddress=parsablecommand.substring("@author(".length(),parsablecommand.indexOf(')'));
-//				showUserInfo(useraddress);
+		cmdShowUser(useraddress);
             } else {
                 //	if(source instanceof ViewerPathInfo) {
                 //		((ViewerPathInfo)source).doCommand(parsablecommand);

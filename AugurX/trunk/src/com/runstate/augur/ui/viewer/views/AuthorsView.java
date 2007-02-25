@@ -79,11 +79,11 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 		}
 	}
 	
-	public void showUser(String newaddress) {
+	public boolean showUser(String newaddress) {
 		if(newaddress==null) {
 			auguraddress=null;
 			ui=null;
-			return;
+			return false;
 		}
 		else {
 			auguraddress=newaddress;
@@ -98,10 +98,12 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 					}
 					catch (GalleryException e) {}
 				}
+                                return false;
 			}
 		}
 		
 		updateUser();
+                return true;
 	}
 	
 	private void updateUser() {

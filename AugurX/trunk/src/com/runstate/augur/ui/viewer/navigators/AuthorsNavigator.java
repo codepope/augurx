@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -81,6 +82,7 @@ public class AuthorsNavigator extends AbstractNavigator implements ListSelection
       
         add(BorderLayout.CENTER,new JScrollPane(userlist));
       
+        userlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         userlist.addListSelectionListener(this);
     }
     
@@ -88,6 +90,11 @@ public class AuthorsNavigator extends AbstractNavigator implements ListSelection
     
     public void focusOnMe() {
         userlist.requestFocus();
+    }
+    
+    public void unselect() {
+        int [] empty={};
+        userlist.setSelectedIndices(empty);
     }
     
     public void valueChanged(ListSelectionEvent e) {

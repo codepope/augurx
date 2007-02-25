@@ -21,20 +21,7 @@ public class VCShowAboutUser extends ViewerUICommand {
 	}
 	
 	public void execute(Browser v) {
-		AuthorInfo ui=Controller.getGallery().getAuthorInfo(auguraddress);
-		if(ui==null) {
-			int res=JOptionPane.showConfirmDialog(v,"No userinfo for "+auguraddress+"\nDo you want to retrieve it?","Augur",JOptionPane.YES_NO_OPTION);
-			
-			if(res==JOptionPane.YES_OPTION) {
-				try {
-					v.doCommand(new VCRefreshUser(auguraddress));
-				}
-				catch (GalleryException e) {}
-			}
-		}
-		else {
-			v.cmdShowUser(auguraddress);
-		}
+		v.cmdShowUser(auguraddress);
 	}
 }
 
