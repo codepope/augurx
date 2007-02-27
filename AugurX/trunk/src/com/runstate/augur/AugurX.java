@@ -24,8 +24,10 @@ import org.jdesktop.jdic.desktop.DesktopException;
 
 public class AugurX {
     public static String name="Augur";
-    public static String edition="Alpha Release";
-    public static String build="0.5.x.0";
+    public static String edition="Snapshot Build";
+    public static String build="svn revision 13";
+//    public static String edition="Alpha Release";
+//    public static String build="0.5.x.0";
     
     static boolean forcecentral=false;
     
