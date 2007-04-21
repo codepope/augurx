@@ -16,10 +16,18 @@ As most messages on CiX are posted with Ameol which uses the CP1252 character se
 
 == Tips for Developers ==
 
+The instructions on the source tab for how to do a checkout don't account correctly for the svn directory structure. The correct command is
+
+{{{
+svn ls http://augurx.googlecode.com/svn/AugurX/trunk/
+}}}
+
+=== Getting The Source ===
+
+=== Character Encodings ===
 There are some places in the AugurX source code where international characters are used. As different platforms differ in their handling of default international character sets it is recommended to explicitly specify the character set in use. 
 
 In Netbeans you can do this by selecting Tools->Options then Advanced then under Editiong->Java Sources set default encoding to Cp1252.
-
 
 
 
