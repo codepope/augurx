@@ -12,6 +12,8 @@ Netbeans can be downloaded from
 
 http://www.netbeans.info/downloads/index.php - if you don't have a JDK installed then it is best to pick the bundle that includes JDK 5.
 
+Update: There still isn't a release but there is a binary snapshot build on the downloads page which should just need a JRE to be usable, JRE 5 or 6 should work.
+
 = Running AugurX =
 
 There are some hints on running AugurX on the HintsAndTips page.
