@@ -29,7 +29,15 @@ public class SSHConnection {
 	
 	public SSHConnection(String host) throws SSHConnectionException {
 		this.host=host;
-		
+                String initialLogin = "";
+		if (host.startsWith("twix"))
+                {
+                    initialLogin = "twix";
+                }
+                else if (host.startsWith("cix"))
+                {
+                    initialLogin = "qix";
+                }
 		jsch=new JSch();
 		
 		
@@ -37,9 +45,9 @@ public class SSHConnection {
 			
 			jsch.setKnownHosts(Controller.getProfile().get(Prefs.HOMEDIR)+"known_hosts");
 			
-			session=jsch.getSession("qix",host,22);
+			session=jsch.getSession(initialLogin,host,22);
 			
-			UserInfo ui=new CixUserInfo();
+			UserInfo ui=new CosyUserInfo();
 			
 			session.setUserInfo(ui);
 			
@@ -65,7 +73,7 @@ public class SSHConnection {
 			try {
 				session=jsch.getSession("qix",host,22);
 				
-				UserInfo ui=new CixUserInfo();
+				UserInfo ui=new CosyUserInfo();
 				
 				session.setUserInfo(ui);
 				
@@ -120,7 +128,43 @@ public class SSHConnection {
 		
 		return false;
 	}
-	
+	public String waitForAndReturn(String s) {
+		boolean done=false;
+		StringBuffer sb=new StringBuffer(1024);
+		while(!done) {
+			sb.setLength(0);
+			
+			if(mos.available()>0) {
+				
+				int i=mos.available();
+				
+				while(i>0) {
+					int c=mos.read();
+					sb.append((char)c);
+					i--;
+				}
+				
+				
+				if(debug) System.out.println("Current read is '"+sb.toString()+"' ("+sb.length()+") waiting for "+s);
+				
+				if(sb.toString().indexOf(s)!=-1) {
+					if(debug) System.out.println("Found it");
+                                      
+                                              //  if(debug) System.out.println(sb);
+                                        
+					return sb.toString();
+				}
+			}
+			
+			try {
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e) {}
+			
+		}
+		
+		return null;
+	}
 	public int waitFor(String[] s) {
 		boolean done=false;
 		StringBuffer sb=new StringBuffer(1024);
@@ -197,7 +241,7 @@ public class SSHConnection {
             }
 	}
 	
-	static class CixUserInfo implements UserInfo {
+	static class CosyUserInfo implements UserInfo {
 		public String getPassword() {
 			return "";
 		}

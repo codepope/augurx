@@ -62,6 +62,10 @@ public class Msg
 		this.door=door;
 	}
 	
+        public Door getDoor()
+        {
+            return this.door;
+        }
 	/**
 	 * Sets Textpath
 	 *

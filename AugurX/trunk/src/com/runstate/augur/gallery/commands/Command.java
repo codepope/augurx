@@ -1,5 +1,5 @@
 /**
- * CixCommand.java
+ * Command.java
  *
  * @author Created by Omnicore CodeGuide
  */

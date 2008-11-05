@@ -1,5 +1,5 @@
 /**
- * PrefsManager.java
+ * Controller.java
  *
  * @author Created by Omnicore CodeGuide
  */
@@ -301,6 +301,15 @@ public class Controller implements GalleryEventListener,AugurPanelManagerListene
 		}
 		
 		return gallery.syncAll();
+	}
+	public int syncDoor(String doorname)
+	{
+		if(mode!=RUNNING)
+		{
+			return -1;
+		}
+		
+		return gallery.syncDoor(doorname);
 	}
 	
 	SimpleDateFormat sdf=new SimpleDateFormat("HH:mm dd/MMM/yy");

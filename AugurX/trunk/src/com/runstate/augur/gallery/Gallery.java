@@ -1559,7 +1559,24 @@ public  class Gallery {
         } catch (SQLException e) { e.printStackTrace(); }
         
     }
-    
+    public int syncDoor(String doorname)
+    {
+        int newmsgs=0;
+        Door[] doors=getDoors();
+        for(int i=0;i<doors.length;i++) {
+            if (doors[i].getDoorname().equalsIgnoreCase(doorname))
+            {
+                int result=doors[i].session();
+                if(result==-1) {
+                // Error
+                    System.out.println("Session reported error");
+                } else {
+                 newmsgs=newmsgs+result;
+                }
+            }
+        }
+        return newmsgs;
+    }
     public int syncAll() {
         int newmsgs=0;
         Door[] doors=getDoors();
