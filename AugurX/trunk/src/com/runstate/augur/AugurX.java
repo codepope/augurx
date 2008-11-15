@@ -14,13 +14,13 @@ import com.runstate.augur.controller.Prefs;
 import com.runstate.augur.controller.Profile;
 import com.runstate.augur.gallery.BundleManager;
 import com.runstate.augur.gallery.Gallery;
+import com.runstate.util.ImageCache;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import org.jdesktop.jdic.desktop.Desktop;
-import org.jdesktop.jdic.desktop.DesktopException;
 
 public class AugurX {
     public static String name="Augur";
@@ -34,8 +34,18 @@ public class AugurX {
     public static void main(String[] args) {
         
         Controller controller=Controller.getController();
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name","Augur");
-        
+           // Are we on a Mac?
+        String lcOSName = System.getProperty("os.name").toLowerCase();
+        boolean MAC_OS_X = lcOSName.startsWith("mac os x");
+
+        if(MAC_OS_X) {
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name","Augur");
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            com.apple.eawt.Application app=com.apple.eawt.Application.getApplication();
+            ImageIcon img=ImageCache.get("macosxbadge");
+            app.setDockIconImage(img.getImage());
+
+        }
         checkArguments(args,controller);
         
         String lookandfeel=controller.getProfile().get(Prefs.UI_LOOKANDFEEL,UIManager.getSystemLookAndFeelClassName());

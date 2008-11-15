@@ -15,16 +15,18 @@ import com.runstate.augur.ui.textpanes.HTMLPane;
 import com.runstate.util.ResourceLoader;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.border.BevelBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-import org.jdesktop.jdic.desktop.Desktop;
-import org.jdesktop.jdic.desktop.DesktopException;
 
 public class AboutAugur extends AugurPanel implements HyperlinkListener
 {
@@ -161,26 +163,23 @@ public class AboutAugur extends AugurPanel implements HyperlinkListener
 	 *
 	 * @param e the event responsible for the update
 	 */
-	public void hyperlinkUpdate(HyperlinkEvent e)
-	{
-		URL u=e.getURL();
-		
-		if(e.getEventType()==HyperlinkEvent.EventType.ACTIVATED)
-		{
-		//	try
-		//	{
+	@Override
+    public void hyperlinkUpdate(HyperlinkEvent e) {
+        URI u;
+        try {
+            u = e.getURL().toURI();
+
+            if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
                 try {
-                    Desktop.browse(u);
-                } catch (DesktopException ex) {
+                    Desktop.getDesktop().browse(u);
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                            
-			//	BrowserLauncher.openURL(u.toString());
-		//	}
-		//	catch (IOException eek) { eek.printStackTrace(); }
-		}
-	
-	}
+            }
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(AboutAugur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 	
 	
 }

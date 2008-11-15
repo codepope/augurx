@@ -27,10 +27,14 @@ import com.runstate.util.swing.JToolButton;
 import com.runstate.util.swing.SwingWorker;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -38,8 +42,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.jdesktop.jdic.desktop.Desktop;
-import org.jdesktop.jdic.desktop.DesktopException;
 
 public class Browser extends AugurPanel implements
         BundleUser,
@@ -806,20 +808,21 @@ public class Browser extends AugurPanel implements
         
         if(isurl) {
             
-            try {
-                final URL url= new URL(parsablecommand);
+           try {
+                final URI uri= new URI(parsablecommand);
                 Runnable r=new Runnable() {
                     public void run() {
                         try {
-                            Desktop.browse(url);
-                        } catch (DesktopException ex) {
-                            ex.printStackTrace();
+                            Desktop.getDesktop().browse(uri);
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
                         }
                     }
                 };
                 Thread t=new Thread(r);
                 t.start();
-            } catch (MalformedURLException ex) {
+            } catch (URISyntaxException ex) {
                 ex.printStackTrace();
                 return;
             }
