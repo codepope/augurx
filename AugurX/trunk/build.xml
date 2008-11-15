@@ -68,15 +68,6 @@
     -->
     
       <target name="-post-jar">
-        <copy todir="dist/lib/">
-            <fileset dir="lib/jdic-20061102-bin-crossplatform/">
-                <include name="mac/**"/>
-                <include name="windows/**"/>
-                <include name="linux/**"/>
-                <include name="sunos/**"/>
-                <include name="defmailer.properties"/>
-            </fileset>
-        </copy>
     </target>
     
     <!-- This is just a tweak -->
