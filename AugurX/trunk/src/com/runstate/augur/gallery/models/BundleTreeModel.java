@@ -159,9 +159,9 @@ public class BundleTreeModel extends DefaultTreeModel implements BundleManagerLi
 			if(btn instanceof BundleContainerTreeNode) {
 				// This node may have children
 				ArrayList<BundleTreeNode> al=new ArrayList<BundleTreeNode>();
-				Enumeration<BundleTreeNode> e=(Enumeration<BundleTreeNode>)btn.children();
+				Enumeration e=btn.children();
 				while(e.hasMoreElements()) {
-					BundleTreeNode cbtn=e.nextElement();
+					BundleTreeNode cbtn=(BundleTreeNode)e.nextElement();
 					al.add(cbtn);
 				}
 				// Now we have a list of the children

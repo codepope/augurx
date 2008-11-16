@@ -180,7 +180,7 @@ public class BundleManager {
 		return bundle.getBundlename();
 	}
 	
-	Vector<BundleManagerListener> bundleManagerListeners=new Vector<BundleManagerListener>();
+	final Vector<BundleManagerListener> bundleManagerListeners=new Vector<BundleManagerListener>();
 	
 	public void addBundleManagerListener(BundleManagerListener bml) {
 		synchronized(bundleManagerListeners) {

@@ -8,7 +8,6 @@ package com.runstate.augur.gallery;
 
 import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Door;
-import com.runstate.augur.gallery.Msg;
 import com.runstate.augur.gallery.models.StrandTreeModel;
 import java.util.ArrayList;
 import java.util.HashSet;

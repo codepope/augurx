@@ -46,7 +46,7 @@ public class AugurX {
             // Then we have to do a bit of reflection to call setDockIconImage
             
             try {
-                Class appc = Class.forName("com.apple.eawt.Application");
+                Class<?> appc = Class.forName("com.apple.eawt.Application");
                 Object app = appc.newInstance();
                 Method meth = appc.getMethod("setDockIconImage", new Class<?>[]{ Image.class} );
 
