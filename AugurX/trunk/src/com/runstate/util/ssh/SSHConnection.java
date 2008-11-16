@@ -25,47 +25,60 @@ public class SSHConnection {
 	Session session;
 	Channel channel;
 	String host;
-	boolean debug=Controller.getProfile().getBool(Prefs.DEBUG_SSH,false);
+	String initialLogin;
+
+    boolean debug=Controller.getProfile().getBool(Prefs.DEBUG_SSH,false);
 	
+    // For backwards compatibility
 	public SSHConnection(String host) throws SSHConnectionException {
+       if (host.startsWith("twix"))
+       {
+           setupConnection(host, "twix");
+       }
+       else if (host.startsWith("cix"))
+       {
+            setupConnection(host,"qix");
+       }
+    }
+
+
+    public SSHConnection(String host,String initialLogin) throws SSHConnectionException {
+        setupConnection(host,initialLogin);
+    }
+
+    private void setupConnection(String host,String initialLogin) throws SSHConnectionException
+    {
 		this.host=host;
-                String initialLogin = "";
-		if (host.startsWith("twix"))
-                {
-                    initialLogin = "twix";
-                }
-                else if (host.startsWith("cix"))
-                {
-                    initialLogin = "qix";
-                }
-		jsch=new JSch();
-		
-		
+        this.initialLogin=initialLogin;
+
+        jsch=new JSch();
+
+
 		try {
-			
+
 			jsch.setKnownHosts(Controller.getProfile().get(Prefs.HOMEDIR)+"known_hosts");
-			
+
 			session=jsch.getSession(initialLogin,host,22);
-			
+
 			UserInfo ui=new CosyUserInfo();
-			
+
 			session.setUserInfo(ui);
-			
+
 			mis=new WritableInputStream();
 			mos=new ReadableOutputStream();
-			
+
 			session.setInputStream(mis);
 			session.setOutputStream(mos);
-			
+
 			session.connect();
-			
+
 			channel=session.openChannel("shell");
-			
+
 			channel.connect();
-			
-			
+
+
 		} catch (JSchException e) { throw new SSHConnectionException("Failed to connect",e); }
-		
+
 	}
 	
 	public void connect() throws SSHConnectionException {
