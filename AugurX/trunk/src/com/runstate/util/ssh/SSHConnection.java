@@ -84,7 +84,7 @@ public class SSHConnection {
 	public void connect() throws SSHConnectionException {
 		if(session==null) {
 			try {
-				session=jsch.getSession("qix",host,22);
+				session=jsch.getSession(initialLogin,host,22);
 				
 				UserInfo ui=new CosyUserInfo();
 				
