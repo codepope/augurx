@@ -21,7 +21,7 @@ public class Parameter
 	/**
 	 * Sets Name
 	 *
-	 * @param    Name                a  String
+	 * @param    name                a  String
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -39,7 +39,7 @@ public class Parameter
 	/**
 	 * Sets Label
 	 *
-	 * @param    Label               a  String
+	 * @param    label               a  String
 	 */
 	public void setLabel(String label) {
 		this.label = label;

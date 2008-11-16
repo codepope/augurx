@@ -37,7 +37,7 @@ public class CixRootPathInfo extends CixPathInfo implements Serializable {
 	/**
 	 * Sets Sections
 	 *
-	 * @param    Sections            an ArrayList<String>
+	 * @param    sections            an ArrayList<String>
 	 */
 	public void setSections(ArrayList<String> sections) {
 		this.sections = sections;
@@ -55,7 +55,7 @@ public class CixRootPathInfo extends CixPathInfo implements Serializable {
 	/**
 	 * Sets Confentries
 	 *
-	 * @param    Confentries         an ArrayList<ConfEntry>
+	 * @param    confentries         an ArrayList<ConfEntry>
 	 */
 	public void setConfentries(ArrayList<ConfEntry> confentries) {
 		this.confentries = confentries;

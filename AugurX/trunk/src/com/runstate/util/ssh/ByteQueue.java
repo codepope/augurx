@@ -34,15 +34,6 @@ import java.util.NoSuchElementException;
 * @version
 *   Jun 12, 1998
 *
-* @see ByteLinkedQueue
-* @see ObjectQueue
-* @see BooleanQueue
-* @see CharQueue
-* @see DoubleQueue
-* @see FloatQueue
-* @see IntQueue
-* @see LongQueue
-* @see ShortQueue
 ******************************************************************************/
 public class ByteQueue implements Cloneable
 {
@@ -62,7 +53,6 @@ public class ByteQueue implements Cloneable
    * Initialize an empty queue with an initial capacity of 10.  Note that the
    * <CODE>insert</CODE> method works efficiently (without needing more
    * memory) until this capacity is reached.
-   * @param - none
    * <dt><b>Postcondition:</b><dd>
    *   This queue is empty and has an initial capacity of 10.
    * @exception OutOfMemoryError
@@ -82,7 +72,7 @@ public class ByteQueue implements Cloneable
    * Initialize an empty queue with a specified initial capacity. Note that the
    * <CODE>insert</CODE> method works efficiently (without needing more
    * memory) until this capacity is reached.
-   * @param <CODE>initialCapacity</CODE>
+   * @param initialCapacity
    *   the initial capacity of this queue
    * <dt><b>Precondition:</b><dd>
    *   <CODE>initialCapacity</CODE> is non-negative.
@@ -107,7 +97,6 @@ public class ByteQueue implements Cloneable
    
    /**
    * Generate a copy of this queue.
-   * @param - none
    * @return
    *   The return value is a copy of this queue. Subsequent changes to the
 
@@ -142,7 +131,7 @@ public class ByteQueue implements Cloneable
    
    /**
    * Change the current capacity of this queue.
-   * @param <CODE>minimumCapacity</CODE>
+   * @param minimumCapacity
    *   the new capacity for this queue
    * <dt><b>Postcondition:</b><dd>
    *   This queue's capacity has been changed to at least <CODE>minimumCapacity</CODE>.
@@ -190,7 +179,6 @@ public class ByteQueue implements Cloneable
    * Accessor method to get the current capacity of this queue.
    * The <CODE>insert</CODE> method works efficiently (without needing
    * more memory) until this capacity is reached.
-   * @param - none
    * @return
    *   the current capacity of this queue
    **/
@@ -202,7 +190,6 @@ public class ByteQueue implements Cloneable
  
    /**
    * Get the front item, removing it from this queue.
-   * @param - none
    * <dt><b>Precondition:</b><dd>
    *   This queue is not empty.
    * <dt><b>Postcondition:</b><dd>
@@ -229,7 +216,7 @@ public class ByteQueue implements Cloneable
    * would take this queue beyond its current capacity, then the capacity is
    * increased before adding the new item. The new item may be the null
    * reference.
-   * @param <CODE>item</CODE>
+   * @param item
    *   the item to be pushed onto this queue
    * <dt><b>Postcondition:</b><dd>
    *   The item has been pushed onto this queue.
@@ -265,7 +252,6 @@ public class ByteQueue implements Cloneable
 
    /**
    * Determine whether this queue is empty.
-   * @param - none
    * @return
    *   <CODE>true</CODE> if this queue is empty;
    *   <CODE>false</CODE> otherwise.
@@ -291,7 +277,6 @@ public class ByteQueue implements Cloneable
        
    /**
    * Accessor method to determine the number of items in this queue.
-   * @param - none
    * @return
    *   the number of items in this queue
    **/
@@ -304,7 +289,6 @@ public class ByteQueue implements Cloneable
    /**
    * Reduce the current capacity of this queue to its actual size (i.e., the
    * number of items it contains).
-   * @param - none
    * <dt><b>Postcondition:</b><dd>
    *   This queue's capacity has been changed to its current size.
    * @exception OutOfMemoryError

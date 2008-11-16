@@ -33,7 +33,7 @@ public class CommandEvent
 	/**
 	 * Sets Id
 	 *
-	 * @param    Id                  a  String
+	 * @param    id                  a  String
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -51,7 +51,7 @@ public class CommandEvent
 	/**
 	 * Sets Type
 	 *
-	 * @param    Type                an int
+	 * @param    type                an int
 	 */
 	public void setType(int type) {
 		this.type = type;
@@ -69,7 +69,7 @@ public class CommandEvent
 	/**
 	 * Sets Command
 	 *
-	 * @param    Command             a  Command
+	 * @param    command             a  Command
 	 */
 	public void setCommand(Command command) {
 		this.command = command;

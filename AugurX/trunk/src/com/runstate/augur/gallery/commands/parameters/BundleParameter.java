@@ -20,7 +20,7 @@ public class BundleParameter extends Parameter
 	/**
 	 * Sets Path
 	 *
-	 * @param    Path                a  String
+	 * @param    path                a  String
 	 */
 	public void setBundleName(String path) {
 		this.bundleName = path;

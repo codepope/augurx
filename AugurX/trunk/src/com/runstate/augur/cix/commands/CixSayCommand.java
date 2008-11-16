@@ -30,7 +30,7 @@ public class CixSayCommand extends CixCommand implements SayCommand {
 	/**
 	 * Sets Text
 	 *
-	 * @param    Text                a  String
+	 * @param    text                a  String
 	 */
 	public void setText(String text) {
 		this.text = text;

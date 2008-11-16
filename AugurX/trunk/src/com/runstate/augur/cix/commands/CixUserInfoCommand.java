@@ -31,7 +31,7 @@ public class CixUserInfoCommand  extends CixCommand implements UserInfoCommand
 	/**
 	 * Sets Address
 	 *
-	 * @param    Address             a  String
+	 * @param    address             a  String
 	 */
 	public void setAddress(String address)
 	{

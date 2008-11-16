@@ -40,7 +40,7 @@ public class CixCommentCommand extends CixCommand implements CommentCommand
 	/**
 	 * Sets Commentto
 	 *
-	 * @param    Commentto           an int
+	 * @param    commentto           an int
 	 */
 	public void setCommentto(Long commentto) {
 		this.commentto = commentto;
@@ -58,7 +58,7 @@ public class CixCommentCommand extends CixCommand implements CommentCommand
 	/**
 	 * Sets Text
 	 *
-	 * @param    Text                a  String
+	 * @param    text                a  String
 	 */
 	public void setText(String text) {
 		this.text = text;

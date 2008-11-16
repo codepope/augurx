@@ -57,7 +57,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Bundleid
 	 *
-	 * @param    Bundleid            a  long
+	 * @param    bundleid            a  long
 	 */
 	public void setBundleid(Long bundleid)
 	{
@@ -84,7 +84,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Door
 	 *
-	 * @param    Door                a  long
+	 * @param    door                a  long
 	 */
 	public void setDoorid(Long door)
 	{
@@ -104,7 +104,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Whendone
 	 *
-	 * @param    Whendone            a  Date
+	 * @param    whendone            a  Date
 	 */
 	public void setWhendone(Date whendone) {
 		this.whendone = whendone;
@@ -122,7 +122,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Done
 	 *
-	 * @param    Done                a  boolean
+	 * @param    done                a  boolean
 	 */
 	public void setDone(boolean done) {
 		this.done = done;
@@ -140,7 +140,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Keep
 	 *
-	 * @param    Keep                a  boolean
+	 * @param    keep                a  boolean
 	 */
 	public void setKeep(boolean keep) {
 		this.keep = keep;
@@ -158,7 +158,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Onhold
 	 *
-	 * @param    Onhold              a  boolean
+	 * @param    onhold              a  boolean
 	 */
 	public void setHold(boolean onhold) {
 		this.hold = onhold;
@@ -176,7 +176,7 @@ public class Command implements Serializable
 	/**
 	 * Sets Id
 	 *
-	 * @param    Id                  a  String
+	 * @param    id                  a  String
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -194,7 +194,7 @@ public class Command implements Serializable
 /**
 	 * Sets Created
 	 *
-	 * @param    Created             a  Date
+	 * @param    created             a  Date
 	 */
 	public void setCreated(Date created) {
 		this.created = created;

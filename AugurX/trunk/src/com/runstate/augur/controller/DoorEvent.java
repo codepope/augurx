@@ -29,7 +29,7 @@ public class DoorEvent
 	/**
 	 * Sets Door
 	 *
-	 * @param    Door                a  Door
+	 * @param    door                a  Door
 	 */
 	public void setDoor(Door door)
 	{
@@ -49,7 +49,7 @@ public class DoorEvent
 	/**
 	 * Sets Msg
 	 *
-	 * @param    Msg                 a  String
+	 * @param    msg                 a  String
 	 */
 	public void setMsg(String msg)
 	{

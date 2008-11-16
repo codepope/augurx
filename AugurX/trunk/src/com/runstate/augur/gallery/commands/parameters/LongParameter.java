@@ -27,7 +27,7 @@ public class LongParameter extends Parameter
 	/**
 	 * Sets Max
 	 *
-	 * @param    Max                 an int
+	 * @param    max                 an int
 	 */
 	public void setMax(long max) {
 		this.max = max;
@@ -45,7 +45,7 @@ public class LongParameter extends Parameter
 	/**
 	 * Sets Min
 	 *
-	 * @param    Min                 an int
+	 * @param    min                 an int
 	 */
 	public void setMin(long min) {
 		this.min = min;
@@ -63,7 +63,7 @@ public class LongParameter extends Parameter
 	/**
 	 * Sets Step
 	 *
-	 * @param    Step                an int
+	 * @param    step                an int
 	 */
 	public void setStep(long step) {
 		this.step = step;

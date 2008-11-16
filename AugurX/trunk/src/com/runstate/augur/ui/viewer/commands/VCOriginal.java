@@ -20,7 +20,7 @@ public class VCOriginal extends ViewerUICommand
 	/**
 	 * Method execute
 	 *
-	 * @param    nce                 a  ViewerCommandImplementor
+	 * @param    viewer     An instance of a Browser
 	 *
 	 */
 	public void execute(Browser viewer) {

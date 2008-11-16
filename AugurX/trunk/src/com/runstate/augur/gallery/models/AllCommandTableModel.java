@@ -38,7 +38,7 @@ public class AllCommandTableModel extends AbstractTableModel implements CommandE
 	/**
 	 * Sets PendingOnly
 	 *
-	 * @param    PendingOnly         a  boolean
+	 * @param    pendingOnly         a  boolean
 	 */
 	public void setPendingOnly(boolean pendingOnly)
 	{

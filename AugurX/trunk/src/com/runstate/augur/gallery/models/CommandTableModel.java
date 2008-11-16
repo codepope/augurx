@@ -37,7 +37,7 @@ public class CommandTableModel extends AbstractTableModel implements CommandEven
 	/**
 	 * Sets PendingOnly
 	 *
-	 * @param    PendingOnly         a  boolean
+	 * @param    pendingOnly         a  boolean
 	 */
 	public void setPendingOnly(boolean pendingOnly)
 	{

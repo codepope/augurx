@@ -46,7 +46,7 @@ public class SyncEvent {
 	/**
 	 * Sets Description
 	 *
-	 * @param    Description         a  String
+	 * @param    description         a  String
 	 */
 	public void setDescription(String description)
 	{
@@ -66,7 +66,7 @@ public class SyncEvent {
 	/**
 	 * Sets Doorname
 	 *
-	 * @param    Doorname            a  String
+	 * @param    doorname            a  String
 	 */
 	public void setDoorname(String doorname)
 	{

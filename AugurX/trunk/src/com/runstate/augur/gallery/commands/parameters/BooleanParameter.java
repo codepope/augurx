@@ -36,7 +36,7 @@ public class BooleanParameter extends Parameter
 	/**
 	 * Sets Value
 	 *
-	 * @param    Value               a  String
+	 * @param    value               a  String
 	 */
 	public void setValue(String value) {
 		this.value = new Boolean(value).booleanValue();

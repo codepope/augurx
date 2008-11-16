@@ -73,8 +73,8 @@ public class Bundle
 	/**
 	 * Method setMsgUnread
 	 *
-	 * @param    longValue           a  long
-	 *
+	 * @param id msg id
+	 * @param b boolean
 	 */
 	public void setMsgUnread(Long id,boolean b)
 	{
@@ -228,8 +228,8 @@ public class Bundle
 	/**
 	 * Method setMsgIgnore
 	 *
-	 * @param    longValue           a  long
-	 *
+	 * @param    id           a  long
+	 * @param     b           a boolean
 	 */
 	public void setMsgIgnore(Long id,boolean b)
 	{
@@ -275,7 +275,7 @@ public class Bundle
 	/**
 	 * Sets Doorid
 	 *
-	 * @param    Doorid              a  long
+	 * @param    doorid              a  long
 	 */
 	public void setDoorid(Long doorid)
 	{
@@ -323,7 +323,7 @@ public class Bundle
 	/**
 	 * Sets Bundlemanager
 	 *
-	 * @param    Bundlemanager       a  BundleManager
+	 * @param    bundlemanager       a  BundleManager
 	 */
 	public void setBundlemanager(BundleManager bundlemanager)
 	{
@@ -343,7 +343,7 @@ public class Bundle
 	/**
 	 * Sets Parentid
 	 *
-	 * @param    Parentid            a  long
+	 * @param    parentid            a  long
 	 */
 	public void setParentid(Long parentid)
 	{
@@ -363,7 +363,7 @@ public class Bundle
 	/**
 	 * Sets Container
 	 *
-	 * @param    Container           a  boolean
+	 * @param    container           a  boolean
 	 */
 	public void setContainer(boolean container)
 	{
@@ -405,7 +405,7 @@ public class Bundle
 	/**
 	 * Sets Pathid
 	 *
-	 * @param    Pathid              a  long
+	 * @param    pathid              a  long
 	 */
 	public void setBundleid(Long pathid)
 	{
@@ -425,7 +425,7 @@ public class Bundle
 	/**
 	 * Sets Total
 	 *
-	 * @param    Total               an int
+	 * @param    total               an int
 	 */
 	public void setTotal(int total)
 	{
@@ -445,7 +445,7 @@ public class Bundle
 	/**
 	 * Sets Path
 	 *
-	 * @param    Path                a  String
+	 * @param    bundlename                a  String
 	 */
 	public void setBundlename(String bundlename)
 	{
@@ -465,7 +465,7 @@ public class Bundle
 	/**
 	 * Sets Unread
 	 *
-	 * @param    Unread              an int
+	 * @param    unread              an int
 	 */
 	public void setUnread(int unread)
 	{

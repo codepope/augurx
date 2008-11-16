@@ -23,7 +23,7 @@ public class FontButtonEvent
 	/**
 	 * Sets Source
 	 *
-	 * @param    Source              a  FontButton
+	 * @param    source              a  FontButton
 	 */
 	public void setSource(FontButton source)
 	{
@@ -43,7 +43,7 @@ public class FontButtonEvent
 	/**
 	 * Sets Fontname
 	 *
-	 * @param    Fontname            a  String
+	 * @param    fontname            a  String
 	 */
 	public void setFontname(String fontname)
 	{

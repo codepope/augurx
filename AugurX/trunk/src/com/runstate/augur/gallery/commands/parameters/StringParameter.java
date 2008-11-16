@@ -20,7 +20,7 @@ public class StringParameter extends Parameter
 	/**
 	 * Sets Value
 	 *
-	 * @param    Value               a  String
+	 * @param    value               a  String
 	 */
 	public void setValue(String value) {
 		this.value = value;

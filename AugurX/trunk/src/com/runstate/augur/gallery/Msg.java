@@ -5,10 +5,8 @@
  */
 package com.runstate.augur.gallery;
 
-import com.runstate.augur.AugurX;
 import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Door;
-import com.runstate.augur.gallery.Strand;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.sql.Timestamp;
@@ -69,7 +67,7 @@ public class Msg
 	/**
 	 * Sets Textpath
 	 *
-	 * @param    Textpath            a  String
+	 * @param    textpath            a  String
 	 */
 	public void setTextpath(String textpath)
 	{
@@ -86,7 +84,11 @@ public class Msg
 		return textpath;
 	}
 	
-	public String getBundleName()
+	/**
+     * returns the name of the bundle
+     * @return bundle name
+     */
+    public String getBundleName()
 	{
 		return Controller.getController().getGallery().getBundleManager().getBundle(bundleId).getBundlename();
 	}
@@ -94,7 +96,7 @@ public class Msg
 	/**
 	 * Sets Firstcomment
 	 *
-	 * @param    Firstcomment        a  long
+	 * @param    firstcomment        a  long
 	 */
 	public void setFirstcomment(Long firstcomment)
 	{
@@ -116,7 +118,7 @@ public class Msg
 	/**
 	 * Sets Deleted
 	 *
-	 * @param    Deleted             a  boolean
+	 * @param    deleted             a  boolean
 	 */
 	public void setDeleted(boolean deleted)
 	{
@@ -146,7 +148,7 @@ public class Msg
 	/**
 	 * Sets Rootid
 	 *
-	 * @param    Rootid              a  long
+	 * @param    rootid              a  long
 	 */
 	public void setRootKnotId(Long rootid)
 	{
@@ -182,7 +184,7 @@ public class Msg
 	/**
 	 * Sets Hot
 	 *
-	 * @param    Hot                 a  boolean
+	 * @param    hot                 a  boolean
 	 */
 	public void setHot(boolean hot)
 	{
@@ -218,9 +220,9 @@ public class Msg
 	}
 	
 	/**
-	 * Sets Actionable
+	 * Sets Tagged
 	 *
-	 * @param    Actionable          a  boolean
+	 * @param    tagged          a  boolean
 	 */
 	public void setTagged(boolean tagged)
 	{
@@ -238,7 +240,11 @@ public class Msg
 	}
 	
 
-	public void setMsgId(Long msgid)
+	/**
+     * Sets msg id
+     * @param msgid
+     */
+    public void setMsgId(Long msgid)
 	{
 		this.msgId = msgid;
 	}
@@ -253,7 +259,10 @@ public class Msg
 		return msgId;
 	}
 	
-	public void setBundleId(Long bundleid)
+	/**
+     * Set Bundleid
+     * @param bundleid a long
+     */public void setBundleId(Long bundleid)
 	{
 		this.bundleId = bundleid;
 	}
@@ -271,7 +280,7 @@ public class Msg
 	/**
 	 * Sets Spid
 	 *
-	 * @param    Spid                a  long
+	 * @param    knotId                a  long
 	 */
 	public void setKnotId(Long knotId)
 	{
@@ -291,7 +300,7 @@ public class Msg
 	/**
 	 * Sets Msgdate
 	 *
-	 * @param    Msgdate             a  Timestamp
+	 * @param    msgdate             a  Timestamp
 	 */
 	public void setMsgdate(Timestamp msgdate)
 	{
@@ -311,7 +320,7 @@ public class Msg
 	/**
 	 * Sets Author
 	 *
-	 * @param    Author              a  String
+	 * @param    author              a  String
 	 */
 	public void setAuthor(String author)
 	{
@@ -331,7 +340,7 @@ public class Msg
 	/**
 	 * Sets Subject
 	 *
-	 * @param    Subject             a  String
+	 * @param    subject             a  String
 	 */
 	public void setSubject(String subject)
 	{
@@ -353,7 +362,7 @@ public class Msg
 	/**
 	 * Sets Keep
 	 *
-	 * @param    Keep                a  boolean
+	 * @param    keep                a  boolean
 	 */
 	public void setKeep(boolean keep)
 	{
@@ -373,7 +382,7 @@ public class Msg
 	/**
 	 * Sets Ignore
 	 *
-	 * @param    Ignore              a  boolean
+	 * @param    ignore              a  boolean
 	 */
 	public void setIgnore(boolean ignore)
 	{
@@ -393,7 +402,7 @@ public class Msg
 	/**
 	 * Sets Sourceid
 	 *
-	 * @param    Sourceid            a  String
+	 * @param    sourceid            a  String
 	 */
 	public void setSourceid(String sourceid)
 	{
@@ -413,7 +422,7 @@ public class Msg
 	/**
 	 * Sets Bodystart
 	 *
-	 * @param    Bodystart           an int
+	 * @param    bodystart           an int
 	 */
 	public void setBodystart(int bodystart)
 	{

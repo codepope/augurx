@@ -16,7 +16,8 @@ public class PoolEvent
 	/**
 	 * Constructor
 	 *
-	 * @param    command             a  Command
+     * @param type      type of pool change
+     * @param poolable  changed item
 	 */
 	public PoolEvent(int type,Poolable poolable) {
 		this.type=type;
@@ -36,7 +37,7 @@ public class PoolEvent
 	/**
 	 * Sets Pool
 	 *
-	 * @param    Pool                a  String
+	 * @param    pool                a  String
 	 */
 	public void setPool(String pool) {
 		this.pool = pool;
@@ -54,7 +55,7 @@ public class PoolEvent
 	/**
 	 * Sets Path
 	 *
-	 * @param    Path                  a  String
+	 * @param    key                  a  String
 	 */
 	public void setKey(String key) {
 		this.key = key;
@@ -72,7 +73,7 @@ public class PoolEvent
 	/**
 	 * Sets Type
 	 *
-	 * @param    Type                an int
+	 * @param    type                an int
 	 */
 	public void setType(int type) {
 		this.type = type;
@@ -90,7 +91,7 @@ public class PoolEvent
 	/**
 	 * Sets Command
 	 *
-	 * @param    Command             a  Command
+	 * @param    poolable      a poolable item
 	 */
 	public void setPoolable(Poolable poolable) {
 		this.poolable = poolable;
@@ -105,7 +106,8 @@ public class PoolEvent
 		return poolable;
 	}
 
-	public String toString()
+	@Override
+    public String toString()
 	{
 		return "PoolEvent[type="+type+",key="+key+",poolable="+poolable+"]";
 	}

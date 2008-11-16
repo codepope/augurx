@@ -40,7 +40,7 @@ public class CixConfPathInfo extends CixPathInfo {
 	/**
 	 * Sets Confnote
 	 *
-	 * @param    Confnote            a  String
+	 * @param    confnote            a  String
 	 */
 	public void setConfnote(String confnote) {
 		this.confnote = confnote;
@@ -58,7 +58,7 @@ public class CixConfPathInfo extends CixPathInfo {
 	/**
 	 * Sets Created
 	 *
-	 * @param    Created             a  String
+	 * @param    created             a  String
 	 */
 	public void setCreated(String created) {
 		this.created = created;
@@ -76,7 +76,7 @@ public class CixConfPathInfo extends CixPathInfo {
 	/**
 	 * Sets Moderators
 	 *
-	 * @param    Moderators          an ArrayList<String>
+	 * @param    moderators          an ArrayList<String>
 	 */
 	public void setModerators(ArrayList<String> moderators) {
 		this.moderators = moderators;
@@ -94,7 +94,7 @@ public class CixConfPathInfo extends CixPathInfo {
 	/**
 	 * Sets Topics
 	 *
-	 * @param    Topics              an ArrayList<Topic>
+	 * @param    topics              an ArrayList<Topic>
 	 */
 	public void setTopics(ArrayList<Topic> topics) {
 		this.topics = topics;
@@ -112,7 +112,7 @@ public class CixConfPathInfo extends CixPathInfo {
 	/**
 	 * Sets Participants
 	 *
-	 * @param    Participants        an ArrayList<Part>
+	 * @param    participants        an ArrayList<Part>
 	 */
 	public void setParticipants(ArrayList<Part> participants) {
 		this.participants = participants;

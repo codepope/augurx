@@ -29,7 +29,7 @@ public class CixSkipBackCommand extends CixCommand implements SkipBackCommand {
 	/**
 	 * Sets Skipback
 	 *
-	 * @param    Skipback            an int
+	 * @param    skipback            an int
 	 */
 	public void setSkipback(int skipback) {
 		this.skipback = skipback;

@@ -30,7 +30,7 @@ public class Strand
 	/**
 	 * Constructor
 	 *
-	 * @param    pathid              a  long
+	 * @param    bundleid              a  long
 	 * @param    rootid              a  long
 	 * @param    unread              an int
 	 * @param    hot                 an int
@@ -103,7 +103,7 @@ public class Strand
 	/**
 	 * Sets Deleted
 	 *
-	 * @param    Deleted             an int
+	 * @param    deleted             an int
 	 */
 	public void setDeleted(int deleted)
 	{
@@ -123,7 +123,7 @@ public class Strand
 	/**
 	 * Sets Pathid
 	 *
-	 * @param    Pathid              a  long
+	 * @param    pathid              a  long
 	 */
 	public void setBundleid(Long pathid)
 	{
@@ -143,7 +143,7 @@ public class Strand
 	/**
 	 * Sets Rootid
 	 *
-	 * @param    Rootid              a  long
+	 * @param    rootid              a  long
 	 */
 	public void setRootid(Long rootid)
 	{
@@ -163,7 +163,7 @@ public class Strand
 	/**
 	 * Sets Unread
 	 *
-	 * @param    Unread              an int
+	 * @param    unread              an int
 	 */
 	public void setUnread(int unread)
 	{
@@ -183,7 +183,7 @@ public class Strand
 	/**
 	 * Sets Hot
 	 *
-	 * @param    Hot                 an int
+	 * @param    hot                 an int
 	 */
 	public void setHot(int hot)
 	{
@@ -203,7 +203,7 @@ public class Strand
 	/**
 	 * Sets Action
 	 *
-	 * @param    Action              an int
+	 * @param    action              an int
 	 */
 	public void setTagged(int action)
 	{
@@ -223,7 +223,7 @@ public class Strand
 	/**
 	 * Sets Keep
 	 *
-	 * @param    Keep                an int
+	 * @param   keep                an int
 	 */
 	public void setKeep(int keep)
 	{
@@ -243,7 +243,7 @@ public class Strand
 	/**
 	 * Sets Ignore
 	 *
-	 * @param    Ignore              an int
+	 * @param    ignore              an int
 	 */
 	public void setIgnore(int ignore)
 	{
@@ -263,7 +263,7 @@ public class Strand
 	/**
 	 * Sets Total
 	 *
-	 * @param    Total               an int
+	 * @param    total               an int
 	 */
 	public void setTotal(int total)
 	{
@@ -284,7 +284,7 @@ public class Strand
 	/**
 	 * Sets Commentto
 	 *
-	 * @param    Commentto           a  long
+	 * @param    commentto           a  long
 	 */
 	public void setCommentto(Long commentto)
 	{
@@ -309,7 +309,7 @@ public class Strand
 		/**
 	 * Sets Loaded
 	 *
-	 * @param    Loaded              a  boolean
+	 * @param    loaded              a  boolean
 	 */
 	public void setLoaded(boolean loaded)
 	{

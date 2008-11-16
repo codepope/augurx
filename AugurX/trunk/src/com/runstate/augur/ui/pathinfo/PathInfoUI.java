@@ -32,7 +32,7 @@ public class PathInfoUI extends JPanel
 	/**
 	 * Sets Pathinfo
 	 *
-	 * @param    Pathinfo            a  PathInfo
+	 * @param    pathinfo            a  PathInfo
 	 */
 	public void setPathInfo(PathInfo pathinfo) {
 		this.pathInfo = pathinfo;

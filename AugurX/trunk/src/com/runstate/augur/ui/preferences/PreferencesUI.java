@@ -255,8 +255,9 @@ public class PreferencesUI extends AugurPanel implements TreeSelectionListener
 	
 	/**
 	 * Called whenever the value of the selection changes.
-	 * @param e the event that characterizes the change.
+	 * @param tse the tree selection event that characterizes the change.
 	 */
+    @Override
 	public void valueChanged(TreeSelectionEvent tse)
 	{
 		if(currentprefs!=null)

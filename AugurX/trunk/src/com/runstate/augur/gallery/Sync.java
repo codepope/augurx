@@ -65,7 +65,7 @@ abstract public class Sync implements Runnable
 	/**
 	 * Sets Door
 	 *
-	 * @param    Door                a  Door
+	 * @param    door                a  Door
 	 */
 	public void setDoor(Door door)
 	{
@@ -86,7 +86,7 @@ abstract public class Sync implements Runnable
 	/**
 	 * Sets Mode
 	 *
-	 * @param    Mode                an int
+	 * @param    mode                an int
 	 */
 	public void setMode(int mode)
 	{
@@ -106,7 +106,7 @@ abstract public class Sync implements Runnable
 	/**
 	 * Sets ConnectionTimeOut
 	 *
-	 * @param    ConnectionTimeOut   an int
+	 * @param    connectionTimeOut   an int
 	 */
 	public void setConnectionTimeOut(int connectionTimeOut)
 	{

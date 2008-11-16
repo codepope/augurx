@@ -26,7 +26,7 @@ public class AuthorInfo extends Poolable implements Serializable,Comparable {
 	/**
 	 * Sets Emailaddress
 	 *
-	 * @param    Emailaddress        a  String
+	 * @param    emailaddress        a  String
 	 */
 	public void setEmailaddress(String emailaddress)
 	{
@@ -92,7 +92,7 @@ public class AuthorInfo extends Poolable implements Serializable,Comparable {
 		/**
 	 * Sets UpdatePending
 	 *
-	 * @param    UpdatePending       a  boolean
+	 * @param    updatePending       a  boolean
 	 */
 	public void setUpdatePending(boolean updatePending)
 	{

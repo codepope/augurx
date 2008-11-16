@@ -82,7 +82,7 @@ public class FontButton extends JButton
 	/**
 	 * Method addFontButtonListener
 	 *
-	 * @param    managedPrefPanel    a  ManagedPrefPanel
+	 * @param    fbl a FontButtonListener
 	 *
 	 */
 	public void addFontButtonListener(FontButtonListener fbl)

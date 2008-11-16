@@ -26,7 +26,7 @@ public class PathInfo extends Poolable implements Serializable {
 	/**
 	 * Sets Refreshpending
 	 *
-	 * @param    Refreshpending      a  boolean
+	 * @param    refreshpending      a  boolean
 	 */
 	public void setRefreshpending(boolean refreshpending)
 	{
@@ -46,7 +46,7 @@ public class PathInfo extends Poolable implements Serializable {
 	/**
 	 * Sets Doorid
 	 *
-	 * @param    Doorid              a  long
+	 * @param    doorid              a  long
 	 */
 	public void setDoorid(Long doorid)
 	{
@@ -95,7 +95,7 @@ public class PathInfo extends Poolable implements Serializable {
 	/**
 	 * Sets Bundleid
 	 *
-	 * @param    Bundleid            a  long
+	 * @param    bundleid            a  long
 	 */
 	public void setBundleid(Long bundleid)
 	{

@@ -234,13 +234,7 @@ public class BundleTreeModel extends DefaultTreeModel implements BundleManagerLi
 		if(shouldBeAdded(bundle)) addBundle(bundle);
 	}
 	
-	/**
-	 * Method updateBundleEvent
-	 *
-	 * @param    bundle              a  Bundle
-	 *
-	 */
-	
+
 	private Object modellock=new Object();
 	
 	public void updateBundleEvent(Bundle bundle)
