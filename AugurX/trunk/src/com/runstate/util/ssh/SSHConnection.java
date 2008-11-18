@@ -178,7 +178,7 @@ public class SSHConnection {
     }
 
     /**
-     * Waits for string and returns the matched string when gound
+     * Waits for string and returns the matched string when found
      * @param s string to wait for
      * @return found string
      */
@@ -218,6 +218,57 @@ public class SSHConnection {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
             }
+
+        }
+
+        return null;
+    }
+
+    /**
+     * Waits for string and returns everything read up to and including the
+     * matched text
+     * @param s string to wait for
+     * @return found string
+     */
+    public String waitForAndReturnAll(String s) {
+        boolean done = false;
+        StringBuilder sb = new StringBuilder(1024);
+        StringBuilder bb = new StringBuilder();
+        sb.setLength(0);
+
+        while (!done) {
+            bb.append(sb.toString());
+            sb.setLength(0);
+
+            if (mos.available() > 0) {
+
+                int i = mos.available();
+
+                while (i > 0) {
+                    int c = mos.read();
+                    sb.append((char) c);
+                    i--;
+                }
+
+
+                if (debug) {
+                    System.out.println("Current read is '" + sb.toString() + "' (" + sb.length() + ") waiting for " + s);
+                }
+
+                if (sb.toString().indexOf(s) != -1) {
+                    if (debug) {
+                        System.out.println("Found it");
+                    }
+
+                    //  if(debug) System.out.println(sb);
+                    bb.append(sb);
+                    return bb.toString();
+                }
+            }
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) { }
 
         }
 
@@ -276,6 +327,7 @@ public class SSHConnection {
 
         return -1;
     }
+
 
     /**
      * Flush input - Currently a noop
