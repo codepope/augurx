@@ -15,6 +15,8 @@ import com.runstate.augur.ui.viewer.views.*;
 import javax.swing.*;
 import com.runstate.augur.cix.commands.CixJoinCommand;
 import com.runstate.augur.cix.commands.CixResignCommand;
+import com.runstate.augur.twix.commands.TwixJoinCommand;
+import com.runstate.augur.twix.commands.TwixResignCommand;
 import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Door;
 import com.runstate.augur.gallery.models.StrandTreeModel;
@@ -87,11 +89,14 @@ public class Browser extends AugurPanel implements
         JPanel chooserpanel=new JPanel(new BorderLayout());
         usercommandfield=new UserCommandField(this);
         usercommandfield.setFont(getFont().deriveFont(10.0f));
-        JToolButton syncbutton=new JToolButton(sync_action);
-        syncbutton.setFocusable(false);
+        JToolButton synccixbutton=new JToolButton(sync_action_cix);
+        JToolButton synctwixbutton=new JToolButton(sync_action_twix);
+        synccixbutton.setFocusable(false);
+        synctwixbutton.setFocusable(false);
 //		chooserpanel.add(BorderLayout.WEST,viewcontrol);
         chooserpanel.add(BorderLayout.CENTER,usercommandfield);
-        chooserpanel.add(BorderLayout.EAST,syncbutton);
+        chooserpanel.add(BorderLayout.EAST,synccixbutton);
+        chooserpanel.add(BorderLayout.EAST,synctwixbutton);
         
         displayLayout=new CardLayout();
         displayPanel=new JPanel(displayLayout);
@@ -332,17 +337,32 @@ public class Browser extends AugurPanel implements
     
     
     
-    private Action sync_action = new AbstractAction("Sync") {
+    private Action sync_action_cix = new AbstractAction("Sync Cix") {
         {
-            putValue(Action.SHORT_DESCRIPTION, "Sync");
-            putValue(Action.LONG_DESCRIPTION, "Sync");
+            putValue(Action.SHORT_DESCRIPTION, "Sync Cix");
+            putValue(Action.LONG_DESCRIPTION, "Sync Cix");
             Icon icon = ImageCache.get("synccix");
             putValue(Action.SMALL_ICON, icon);
             putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("F5"));
         }
         
         public void actionPerformed(ActionEvent evt) {
-            doCommand(new VCSync());
+            doCommand(new VCSync("Cix"));
+            updateMenus();
+        }
+    };
+    private Action sync_action_twix = new AbstractAction("Sync Twix") {
+        {
+            putValue(Action.SHORT_DESCRIPTION, "Sync Twix");
+            putValue(Action.LONG_DESCRIPTION, "Sync Twix");
+            Icon icon = ImageCache.get("synctwix");
+            putValue(Action.SMALL_ICON, icon);
+            putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("F6"));
+        }
+        
+        public void actionPerformed(ActionEvent evt) {
+            doCommand(new VCSync("Twix"));
+            updateMenus();
         }
     };
     
@@ -539,17 +559,29 @@ public class Browser extends AugurPanel implements
         AugurPanelManger.getManager().addToDesktop(c);
     }
     
-    public void cmdSyncStarted() {
-        sync_action.setEnabled(false);
+    public void cmdSyncCixStarted() {
+        sync_action_cix.setEnabled(false);
     }
     
-    public void cmdSyncDone(int i) {
-        sync_action.setEnabled(true);
+    public void cmdSyncCixDone(int i) {
+        sync_action_cix.setEnabled(true);
         if(i>0) JOptionPane.showMessageDialog(this,"Sync done with "+i+" new messages");
     }
     
-    public void cmdSyncError() {
-        sync_action.setEnabled(true);
+    public void cmdSyncCixError() {
+        sync_action_cix.setEnabled(true);
+    }
+    public void cmdSyncTwixStarted() {
+        sync_action_twix.setEnabled(false);
+    }
+    
+    public void cmdSyncTwixDone(int i) {
+        sync_action_twix.setEnabled(true);
+        if(i>0) JOptionPane.showMessageDialog(this,"Sync done with "+i+" new messages");
+    }
+    
+    public void cmdSyncTwixError() {
+        sync_action_twix.setEnabled(true);
     }
     
     int currentview=-1;
@@ -714,7 +746,8 @@ public class Browser extends AugurPanel implements
         jm.add(prev_action);
         jm.add(new JSeparator());
         jm.add(usercommand_action);
-        jm.add(sync_action);
+        jm.add(sync_action_cix);
+        jm.add(sync_action_twix);
         menus.add(jm);
         
         
@@ -739,35 +772,35 @@ public class Browser extends AugurPanel implements
     
     
     
-    Pattern basicconf=Pattern.compile("^cix:([^0-9$/:]*)$");
-    Pattern numref=Pattern.compile("^cix:([0-9]+)$");
-    Pattern fullref=Pattern.compile("^cix:([^/]+)/([^:$]*):([0-9]+)$");
-    Pattern topicref=Pattern.compile("^cix:([^/]+)/([^$]*)$");
+    Pattern basicconf=Pattern.compile("^([tw|c]ix):([^0-9$/:]*)$");
+    Pattern numref=Pattern.compile("^([tw|c]ix):([0-9]+)$");
+    Pattern fullref=Pattern.compile("^([tw|c]ix):([^/]+)/([^:$]*):([0-9]+)$");
+    Pattern topicref=Pattern.compile("^([tw|c]ix):([^/]+)/([^$]*)$");
     
     public String convertToAugurPath(String url) {
         
-        Pattern pat=Pattern.compile("^cix:((([^/:]+)/([^:]+):([0-9]+))|([^$]+))$");
+        Pattern pat=Pattern.compile("^([tw|c])ix:((([^/:]+)/([^:]+):([0-9]+))|([^$]+))$");
         
         Matcher mat=basicconf.matcher(url);
         if(mat.matches()) {
-            String path="/cix/"+mat.group(1);
+            String path="/"+mat.group(1)+"/"+mat.group(2);
             return path;
         }
         
         mat=numref.matcher(url);
         if(mat.matches()) {
-            return mat.group(1);
-        }
+           return mat.group(2);
+         }
         
         mat=fullref.matcher(url);
         if(mat.matches()) {
             
-            return "/cix/"+mat.group(1)+"/"+mat.group(2)+":"+mat.group(3);
+            return "/"+mat.group(1)+"/"+mat.group(2)+"/"+mat.group(3)+":"+mat.group(4);
         }
         
         mat=topicref.matcher(url);
         if(mat.matches()) {
-            return "/cix/"+mat.group(1)+"/"+mat.group(2);
+            return "/"+mat.group(1)+"/"+mat.group(2)+"/"+mat.group(3);
         }
         
         System.out.println("Unmatched");
@@ -783,7 +816,7 @@ public class Browser extends AugurPanel implements
         
         
         
-        if(sourcecommand.startsWith("cix:")) {
+        if ((sourcecommand.startsWith("cix:")) || (sourcecommand.startsWith("twix:"))) {
             parsablecommand=convertToAugurPath(sourcecommand);
         } else {
             parsablecommand=sourcecommand;

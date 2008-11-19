@@ -78,7 +78,7 @@ public class PreferencesUI extends AugurPanel implements TreeSelectionListener
 	Object[] treeitems=new Object[]
 	{
 		"Preferences",
-			new Object[] { "Doors", new Item("Cix","CixPrefs") },
+      			new Object[] { "Doors", new Item("Cix","CixPrefs") ,new Item("Twix","TwixPrefs")},
 			new Object[] { "Gallery", new Item("Database Settings","GalleryDBPrefs") },
 			new Object[] { "Desktop Controls",
 				new Item("Fonts","FontPrefs"),

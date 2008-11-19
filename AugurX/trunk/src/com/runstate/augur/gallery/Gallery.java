@@ -280,7 +280,8 @@ public  class Gallery {
                 "tagid INT NOT NULL);");
         
         stmt.executeUpdate("INSERT INTO "+T_DOORS+" VALUES ( NULL, 'cix', 'com.runstate.augur.cix.CixDoor');");
-        
+        stmt.executeUpdate("INSERT INTO "+T_DOORS+" VALUES ( NULL, 'twix', 'com.runstate.augur.twix.TwixDoor');");
+   
     }
     
 //	long bundleidgen=1000;
