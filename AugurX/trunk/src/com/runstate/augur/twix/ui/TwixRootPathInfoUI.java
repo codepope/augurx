@@ -1,0 +1,254 @@
+/**
+ * TwixRootPathInfoUI.java
+ *
+ * @author Created by Omnicore CodeGuide
+ */
+
+package com.runstate.augur.twix.ui;
+
+import com.runstate.augur.twix.pathinfo.TwixRootPathInfo;
+import com.runstate.augur.ui.pathinfo.PathInfoUI;
+import com.runstate.util.swing.TableSorter;
+import java.awt.BorderLayout;
+import java.awt.FontMetrics;
+import java.util.Vector;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+
+public class TwixRootPathInfoUI extends PathInfoUI implements TableModel {
+	JTable roottable;
+	Vector<TableModelListener> listeners;
+//	ArrayList<String> sections;
+//	ArrayList<ConfEntry> confentries;
+	TableSorter tablesorter;
+	TwixRootPathInfo crpi=null;
+	
+	public TwixRootPathInfoUI() {
+		super();
+	}
+	
+	public void createUI() {
+		listeners=new Vector<TableModelListener>();
+//		sections=new ArrayList<String>();
+//		confentries=new ArrayList<ConfEntry>();
+		tablesorter=new TableSorter(this);
+		roottable=new JTable(tablesorter);
+		roottable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		setHeaderSize(roottable,0);
+		setHeaderSize(roottable,1);
+		setHeaderSize(roottable,2);
+		setHeaderSizeByChars(roottable,3,16);
+	//	setTableColWidth(roottable,3,160);
+		setTableColWidth(roottable,4,320);
+		setTableColWidth(roottable,5,320);
+		
+		
+		tablesorter.setTableHeader(roottable.getTableHeader());
+		add(BorderLayout.CENTER,new JScrollPane(roottable));
+	}
+	
+	private void setTableColWidth(JTable jt,int index,int width) {
+		TableColumn tc=jt.getColumnModel().getColumn(index);
+		tc.setPreferredWidth(width);
+	}
+	
+	/**Sets the header and column size as per the Header text
+	 */
+	public void setHeaderSize(JTable jt,int pColumn){
+		//Get the column name of the given column.
+		String value =  jt.getColumnName(pColumn);
+		//Calculate the width required for the column.
+		FontMetrics metrics = getFontMetrics(getFont());
+		int width = metrics.stringWidth(value+"--") +
+			(2*jt.getColumnModel().getColumnMargin());
+		//Set the width.
+		setTableColWidth(jt,pColumn, width);
+		jt.getColumnModel().getColumn(pColumn).setResizable(false);
+	}
+	
+	public void setHeaderSizeByChars(JTable jt,int pColumn,int chars){
+		StringBuffer sb=new StringBuffer();
+		for(int i=0;i<chars;i++) sb.append("a");
+		
+		FontMetrics metrics = getFontMetrics(getFont());
+		int width = metrics.stringWidth(sb.toString()) +
+			(2*jt.getColumnModel().getColumnMargin());
+		setTableColWidth(jt,pColumn, width);
+	}
+	
+	public void updatedPathInfo() {
+		if(getPathInfo()==null) return;
+		
+		TwixRootPathInfo crpi=(TwixRootPathInfo)getPathInfo();
+		
+//		parseRootPathInfo(crpi);
+		
+		fireTableChanged();
+	}
+	
+	
+	
+	/**
+	 * Returns the number of rows in the model. A
+	 * <code>JTable</code> uses this method to determine how many rows it
+	 * should display.  This method should be quick, as it
+	 * is called frequently during rendering.
+	 *
+	 * @return the number of rows in the model
+	 * @see #getColumnCount
+	 */
+	public int getRowCount() {
+		if(getPathInfo()==null) return 0;
+		return ((TwixRootPathInfo)getPathInfo()).getConfentries().size();
+	}
+	
+	/**
+	 * Returns the number of columns in the model. A
+	 * <code>JTable</code> uses this method to determine how many columns it
+	 * should create and display by default.
+	 *
+	 * @return the number of columns in the model
+	 * @see #getRowCount
+	 */
+	public int getColumnCount() {
+		return 6;
+	}
+	
+	/**
+	 * Returns the name of the column at <code>columnIndex</code>.  This is used
+	 * to initialize the table's column header name.  Note: this name does
+	 * not need to be unique; two columns in a table can have the same name.
+	 *
+	 * @param	columnIndex	the index of the column
+	 * @return  the name of the column
+	 */
+	public String getColumnName(int columnIndex) {
+		switch(columnIndex) {
+			case 0: return "Open";
+			case 1: return "Local";
+			case 2: return "Joined";
+			case 3: return "Name";
+			case 4: return "Description";
+			case 5: return "Section";
+		}
+		
+		return "?!";
+	}
+	
+	/**
+	 * Returns the most specific superclass for all the cell values
+	 * in the column.  This is used by the <code>JTable</code> to set up a
+	 * default renderer and editor for the column.
+	 *
+	 * @param columnIndex  the index of the column
+	 * @return the common ancestor class of the object values in the model.
+	 */
+	public Class<?> getColumnClass(int columnIndex) {
+		switch(columnIndex) {
+			case 0: return Boolean.class;
+			case 1: return Boolean.class;
+			case 2: return Boolean.class;
+			case 3: return String.class;
+			case 4: return String.class;
+			case 5: return String.class;
+		}
+		
+		return String.class;
+	}
+	
+	/**
+	 * Returns true if the cell at <code>rowIndex</code> and
+	 * <code>columnIndex</code>
+	 * is editable.  Otherwise, <code>setValueAt</code> on the cell will not
+	 * change the value of that cell.
+	 *
+	 * @param	rowIndex	the row whose value to be queried
+	 * @param	columnIndex	the column whose value to be queried
+	 * @return	true if the cell is editable
+	 * @see #setValueAt
+	 */
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		// TODO
+		return false;
+	}
+	
+	/**
+	 * Returns the value for the cell at <code>columnIndex</code> and
+	 * <code>rowIndex</code>.
+	 *
+	 * @param	rowIndex	the row whose value is to be queried
+	 * @param	columnIndex 	the column whose value is to be queried
+	 * @return	the value Object at the specified cell
+	 */
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		TwixRootPathInfo.ConfEntry ce=((TwixRootPathInfo)getPathInfo()).getConfentries().get(rowIndex);
+		switch(columnIndex) {
+			case 0:
+				return ce.isOpen()?Boolean.TRUE:Boolean.FALSE;
+			case 1:
+				return ce.existslocally?Boolean.TRUE:Boolean.FALSE;
+			case 2:
+				return ce.joined?Boolean.TRUE:Boolean.FALSE;
+			case 3:
+				return ce.name;
+			case 4:
+				return ce.description;
+			case 5:
+				return ((TwixRootPathInfo)getPathInfo()).getSections().get(ce.id);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Sets the value in the cell at <code>columnIndex</code> and
+	 * <code>rowIndex</code> to <code>aValue</code>.
+	 *
+	 * @param	aValue		 the new value
+	 * @param	rowIndex	 the row whose value is to be changed
+	 * @param	columnIndex 	 the column whose value is to be changed
+	 * @see #getValueAt
+	 * @see #isCellEditable
+	 */
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		// TODO
+	}
+	
+	/**
+	 * Adds a listener to the list that is notified each time a change
+	 * to the data model occurs.
+	 *
+	 * @param	l		the TableModelListener
+	 */
+	
+	
+	
+	public void addTableModelListener(TableModelListener l) {
+		listeners.add(l);
+	}
+	
+	/**
+	 * Removes a listener from the list that is notified each time a
+	 * change to the data model occurs.
+	 *
+	 * @param	l		the TableModelListener
+	 */
+	public void removeTableModelListener(TableModelListener l) {
+		listeners.remove(l);
+	}
+	
+	private void fireTableChanged() {
+		TableModelEvent tme=new TableModelEvent(this);
+		
+		for(TableModelListener tml:listeners) {
+			tml.tableChanged(tme);
+		}
+	}
+	
+
+}
+

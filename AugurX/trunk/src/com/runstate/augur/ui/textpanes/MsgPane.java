@@ -365,8 +365,16 @@ public class MsgPane extends JPanel implements HyperlinkListener,FindDialogListe
 		
 		if(m.getCommentto()!=null)
 		{
-			nm.append(" re:<A HREF='cix:"+m.getCommentto()+"'>"+m.getCommentto()+"</A>");
-		}
+                   if(m.getDoor().getDoorname().equals("CixDoor"))
+                    {
+                        nm.append(" re:<A HREF='cix:"+m.getCommentto()+"'>"+m.getCommentto()+"</A>");
+                        nm.append(" by <A HREF='@author("+m.getAuthor()+"@cix)'>"+m.getAuthor()+"</A>");
+                    }
+                    else if (m.getDoor().getDoorname().equals("TwixDoor"))
+                    {
+                        nm.append(" re:<A HREF='twix:"+m.getCommentto()+"'>"+m.getCommentto()+"</A>");
+                        nm.append(" by <A HREF='@author("+m.getAuthor()+"@twix)'>"+m.getAuthor()+"</A>");
+                    }               		}
 		
 		nm.append(" by <A HREF='@author("+m.getAuthor()+"@cix)'>"+m.getAuthor()+"</A>");
                         

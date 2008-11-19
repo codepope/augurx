@@ -16,8 +16,15 @@ public class Prefs
 	public static final String M_C_ALWAYSON="missions.cix.alwayson";
 	public static final String M_C_TIMEOUT="missions.cix.timeout";
 	public static final String M_C_MSGSIZE="missions.cix.msgsize";
+	 
+        public static final String M_T_USERNAME="missions.twix.username";
+	public static final String M_T_PASSWORD="missions.twix.password";
+	public static final String M_T_ALWAYSRESTORE="missions.twix.alwaysrestore";
+	public static final String M_T_ALWAYSON="missions.twix.alwayson";
+	public static final String M_T_TIMEOUT="missions.twix.timeout";
+	public static final String M_T_MSGSIZE="missions.twix.msgsize";
 	
-	public static final String M_S_I_LASTIMPORT="missions.scratchimport.lastimport";
+        public static final String M_S_I_LASTIMPORT="missions.scratchimport.lastimport";
 	public static final String M_S_E_LASTEXPORT="missions.scratchexport.lastexport";
 	
 	public static final String UI_LOOKANDFEEL="ui.lookandfeel";
