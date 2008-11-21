@@ -189,7 +189,18 @@ public  class Gallery {
             }
         }
         
-        if(found) return;
+        if(found) {
+            // We have a message index... now to check the doors table
+           ResultSet rs2=stmt.executeQuery("select count(*) from "+T_DOORS+";");
+           while(rs2.next()) {
+               int i=rs2.getInt(1);
+               if(i==1) {
+                     stmt.executeUpdate("INSERT INTO "+T_DOORS+" VALUES ( NULL, 'twix', 'com.runstate.augur.twix.TwixDoor');");
+               }
+           }
+
+           return;
+        }
         
         
         stmt.executeUpdate("CREATE CACHED TABLE "+T_COMMANDS+" ("+

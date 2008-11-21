@@ -91,12 +91,15 @@ public class Browser extends AugurPanel implements
         usercommandfield.setFont(getFont().deriveFont(10.0f));
         JToolButton synccixbutton=new JToolButton(sync_action_cix);
         JToolButton synctwixbutton=new JToolButton(sync_action_twix);
+        JPanel syncpanel=new JPanel();
         synccixbutton.setFocusable(false);
         synctwixbutton.setFocusable(false);
+        syncpanel.add(synccixbutton);
+        syncpanel.add(synctwixbutton);
 //		chooserpanel.add(BorderLayout.WEST,viewcontrol);
         chooserpanel.add(BorderLayout.CENTER,usercommandfield);
-        chooserpanel.add(BorderLayout.EAST,synccixbutton);
-        chooserpanel.add(BorderLayout.EAST,synctwixbutton);
+        chooserpanel.add(BorderLayout.EAST,syncpanel);
+       
         
         displayLayout=new CardLayout();
         displayPanel=new JPanel(displayLayout);
