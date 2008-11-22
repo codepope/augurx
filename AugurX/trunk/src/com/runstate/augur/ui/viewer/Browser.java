@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -89,14 +90,21 @@ public class Browser extends AugurPanel implements
         JPanel chooserpanel=new JPanel(new BorderLayout());
         usercommandfield=new UserCommandField(this);
         usercommandfield.setFont(getFont().deriveFont(10.0f));
+        JToolButton syncallbutton=new JToolButton(sync_action_all);
         JToolButton synccixbutton=new JToolButton(sync_action_cix);
         JToolButton synctwixbutton=new JToolButton(sync_action_twix);
         JPanel syncpanel=new JPanel();
+
+        syncpanel.setBorder(new EmptyBorder(0,0,0,0));
+     
+        syncallbutton.setFocusable(false);
         synccixbutton.setFocusable(false);
         synctwixbutton.setFocusable(false);
+
         syncpanel.add(synccixbutton);
         syncpanel.add(synctwixbutton);
-//		chooserpanel.add(BorderLayout.WEST,viewcontrol);
+        syncpanel.add(syncallbutton);
+
         chooserpanel.add(BorderLayout.CENTER,usercommandfield);
         chooserpanel.add(BorderLayout.EAST,syncpanel);
        
@@ -337,7 +345,20 @@ public class Browser extends AugurPanel implements
     };
     
     
-    
+    private Action sync_action_all = new AbstractAction("Sync All") {
+        {
+            putValue(Action.SHORT_DESCRIPTION, "Sync All");
+            putValue(Action.LONG_DESCRIPTION, "Sync All");
+            Icon icon = ImageCache.get("syncall");
+            putValue(Action.SMALL_ICON, icon);
+            putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("F5"));
+        }
+
+        public void actionPerformed(ActionEvent evt) {
+            doCommand(new VCSync("All"));
+            updateMenus();
+        }
+    };
     
     
     private Action sync_action_cix = new AbstractAction("Sync Cix") {
@@ -346,7 +367,6 @@ public class Browser extends AugurPanel implements
             putValue(Action.LONG_DESCRIPTION, "Sync Cix");
             Icon icon = ImageCache.get("synccix");
             putValue(Action.SMALL_ICON, icon);
-            putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("F5"));
         }
         
         public void actionPerformed(ActionEvent evt) {
@@ -354,13 +374,13 @@ public class Browser extends AugurPanel implements
             updateMenus();
         }
     };
+
     private Action sync_action_twix = new AbstractAction("Sync Twix") {
         {
             putValue(Action.SHORT_DESCRIPTION, "Sync Twix");
             putValue(Action.LONG_DESCRIPTION, "Sync Twix");
             Icon icon = ImageCache.get("synctwix");
             putValue(Action.SMALL_ICON, icon);
-            putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("F6"));
         }
         
         public void actionPerformed(ActionEvent evt) {
@@ -568,7 +588,7 @@ public class Browser extends AugurPanel implements
     
     public void cmdSyncCixDone(int i) {
         sync_action_cix.setEnabled(true);
-        if(i>0) JOptionPane.showMessageDialog(this,"Sync done with "+i+" new messages");
+        if(i>0) JOptionPane.showMessageDialog(this,"CIX sync done with "+i+" new messages");
     }
     
     public void cmdSyncCixError() {
@@ -580,7 +600,7 @@ public class Browser extends AugurPanel implements
     
     public void cmdSyncTwixDone(int i) {
         sync_action_twix.setEnabled(true);
-        if(i>0) JOptionPane.showMessageDialog(this,"Sync done with "+i+" new messages");
+        if(i>0) JOptionPane.showMessageDialog(this,"Twix sync done with "+i+" new messages");
     }
     
     public void cmdSyncTwixError() {
@@ -749,6 +769,7 @@ public class Browser extends AugurPanel implements
         jm.add(prev_action);
         jm.add(new JSeparator());
         jm.add(usercommand_action);
+        jm.add(sync_action_all);
         jm.add(sync_action_cix);
         jm.add(sync_action_twix);
         menus.add(jm);

@@ -52,25 +52,30 @@ public class TwixUserInfoCommand  extends TwixCommand implements UserInfoCommand
 	{
 		return "Twix:Show Resume "+getAddress();
 	}
+    
 	public boolean isInfo() { return true; }
 	
 	public boolean executeCommand(Door door,TwixSync cm,Gallery gallery,SSHConnection sshconnection)
 	{
 		String user=getAddress();
-		
+
+
 		sshconnection.write("kills\n");
 		sshconnection.waitFor("M:");
-		sshconnection.write("file show resume "+door.getNativeUser(user)+"\n");
-		sshconnection.waitFor("M:");
-		sshconnection.write("download\n");
-		
-		byte[] download=cm.download();
-		
-		sshconnection.waitFor("OK to delete the downloaded scratchpad-file? (y/n)? N"+(char)0x08);
-		
-		sshconnection.write("y\n");
-		
-		sshconnection.waitFor("M:");
+
+        sshconnection.write("file show resume "+door.getNativeUser(user)+"\n");
+        sshconnection.waitFor("M:");
+
+        sshconnection.write("show scr echo #####AUGURBREAK#####\n");
+
+        String download = sshconnection.waitForAndReturnAll("#####AUGURBREAK#####");
+
+        download=download.replaceAll("show scr echo #####AUGURBREAK#####\r\n", "");
+      
+        download=download.replaceAll(" #####AUGURBREAK#####\r\nM:","");
+
+        sshconnection.write("kills\n");
+	//	sshconnection.waitFor("M:");
 	
 		TwixAuthorInfo ui=(TwixAuthorInfo)gallery.getAuthorInfo(getAddress());
 		
@@ -80,7 +85,7 @@ public class TwixUserInfoCommand  extends TwixCommand implements UserInfoCommand
 			gallery.addAuthorInfo(ui);
 		}
 		
-		ui.setResume(new String(download));
+		ui.setResume(download);
 		ui.setUpdateDate(new Date());
 		
 		gallery.updateAuthorInfo(ui);

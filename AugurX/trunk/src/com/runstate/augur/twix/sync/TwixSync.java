@@ -377,13 +377,9 @@ public class TwixSync extends Sync implements TransferProtocolUser,Runnable {
         }
         
         fireSyncMsg(SyncEvent.COLLECTING,"Collecting messages");
-        sshconnection.write("q\n q\n");
-        sshconnection.write("terse\n");
-        sshconnection.waitFor("M:");
-        
-        sshconnection.write("opt term ec no term pag 0 term width 255 q\n");
-      //  sshconnection.write("opt Graphics No Filter No q\n");
-        sshconnection.waitFor("M:");
+//        sshconnection.write("q\n q\n");
+     
+//        sshconnection.waitFor("M:");
 
        sshconnection.write("file read all\n");
         
@@ -638,9 +634,13 @@ public class TwixSync extends Sync implements TransferProtocolUser,Runnable {
         if(result==0) {
             return false;
         }
-        
+
+        sshconnection.write("terse\n");
         sshconnection.write("opt term ec no term I yes q\n");
-      sshconnection.write("opt Blink yes q\n");
+//        sshconnection.write("opt term I yes q\n");
+
+        sshconnection.write("opt Blink yes q\n");
+
 //        sshconnection.write("opt bit8 y scratchpad 65000000 file s y terse unix y d y u y comp y term pag 0 term width 255 ref n auto y edit q q\n");
 //        sshconnection.waitFor("Main:");
 //        sshconnection.write("opt timeout 1 q\n");
