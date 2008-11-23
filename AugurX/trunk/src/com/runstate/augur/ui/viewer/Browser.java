@@ -30,6 +30,7 @@ import com.runstate.util.swing.SwingWorker;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Desktop;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -43,6 +44,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -93,9 +95,10 @@ public class Browser extends AugurPanel implements
         JToolButton syncallbutton=new JToolButton(sync_action_all);
         JToolButton synccixbutton=new JToolButton(sync_action_cix);
         JToolButton synctwixbutton=new JToolButton(sync_action_twix);
-        JPanel syncpanel=new JPanel();
+        
+        JPanel syncpanel=new JPanel(new GridLayout(1,3,2,2));
 
-        syncpanel.setBorder(new EmptyBorder(0,0,0,0));
+        syncpanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
      
         syncallbutton.setFocusable(false);
         synccixbutton.setFocusable(false);
