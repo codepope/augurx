@@ -117,7 +117,7 @@ public class CixDoor extends Door
 	{
 		return new CixAuthorInfo(address);
 	}
-	
+
 	public PathInfo createPathInfo(Long bundleid)
 	{
 		if(getNativePath(Controller.getController().getGallery().getBundleManager().idToName(bundleid))==null)
@@ -169,24 +169,21 @@ public class CixDoor extends Door
 
 	public String getBodyHTML(Msg m)
 	{
+        return processText(getBody(m));
+	}
+
+    public String processText(String s)
+	{
 		StringBuilder htmlised=new StringBuilder();
-		
-//		htmlised.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-//
-//		htmlised.append("<HTML>");
-//		htmlised.append("<HEAD>");
-//		htmlised.append(Augur.getController().getHTMLStyle());
-//		htmlised.append("</HEAD>");
-//		htmlised.append("<BODY>");
-//
+
 		boolean multiline=false;
 		String collectedurl="";
 		String buffline=null;
-		
-		StringTokenizer st=new StringTokenizer(getBody(m)," \n",true);
-		
+
+		StringTokenizer st=new StringTokenizer(s," \n",true);
+
 		int nlc=0;
-		
+
 		while(buffline!=null || st.hasMoreTokens())
 		{
 			String line=null;
@@ -199,10 +196,10 @@ public class CixDoor extends Door
 			{
 				line=st.nextToken();
 			}
-			
-			
-//			System.out.println("line:"+line); 
-			
+
+
+//			System.out.println("line:"+line);
+
 			if(line.equals("\n"))
 			{
 				nlc++;
@@ -228,19 +225,19 @@ public class CixDoor extends Door
 						}
 						htmlised.append("<P>");
 					}
-					
+
 					nlc=0;
 				}
-				
+
 				if(multiline)
 				{
 					int endind=line.indexOf(">");
-					
+
 					if(endind!=-1)
 					{
 						multiline=false;
 						collectedurl=collectedurl+line.substring(0,endind);
-						
+
 						htmlised.append("<A HREF='"+collectedurl+"'>"+StringEscapeUtils.escapeHtml(collectedurl)+"</A>");
 						if(endind!=line.length())
 						{
@@ -274,7 +271,7 @@ public class CixDoor extends Door
 					{
 						int startind=line.startsWith("<URL:")?5:1;
 						int endind=line.indexOf(">");
-						
+
 						if(endind!=-1)
 						{
 							String url=line.substring(startind,endind);
@@ -314,15 +311,12 @@ public class CixDoor extends Door
 					}
 				}
 			}
-			
+
 		}
-		
-//		htmlised.append("</BODY>");
-//		htmlised.append("</HTML>");
-		
+
 		return Controller.getController().wrapWithStyle(null,htmlised.toString());
 	}
-	
+
 	
 	private	static final int S_STARTPARSE=0;
 //	private static final int S_HEADERPARSE=1;

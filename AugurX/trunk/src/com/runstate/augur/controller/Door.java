@@ -228,7 +228,9 @@ public abstract class Door implements SyncListener
 	public abstract ImageIcon getDoorIcon();
 	
 	public abstract String getBodyHTML(Msg m);
-	
+
+    public abstract String processText(String s);
+
 	public abstract void parseReader(Msg m,BufferedReader br);
 }
 

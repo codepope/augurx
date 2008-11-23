@@ -136,7 +136,7 @@ public class Browser extends AugurPanel implements
         browseView=new BrowseView(this);
         authorsView=new AuthorsView(this);
         searchView=new SearchView(this);
-        doorsView=new DoorView();
+        doorsView=new DoorView(this);
         
         browseNavigator.setView(browseView);
         authorsView.setView(authorsNavigator);

@@ -6,17 +6,13 @@
 
 package com.runstate.augur.controller;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
+import com.runstate.augur.ui.viewer.BrowserCommandHandler;
+
 import javax.swing.JPanel;
 
 public interface DoorUI 
 {
        public JPanel getDoorPanel();
+       public void setBrowserCommandHandler(BrowserCommandHandler vch);
 }
 

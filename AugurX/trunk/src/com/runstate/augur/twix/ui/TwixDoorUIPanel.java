@@ -15,9 +15,11 @@ import java.util.Date;
  * @author  dj
  */
 public class TwixDoorUIPanel extends javax.swing.JPanel {
-    
+    TwixDoorUI twixdoorui;
+
     /** Creates new form TwixDoor2UI */
-    public TwixDoorUIPanel() {
+    public TwixDoorUIPanel(TwixDoorUI twixdoorui) {
+        this.twixdoorui=twixdoorui;
         initComponents();
     }
     
@@ -92,7 +94,7 @@ public class TwixDoorUIPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        twixdoorui.syncNow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
@@ -110,5 +112,6 @@ public class TwixDoorUIPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea logTextArea;
     // End of variables declaration//GEN-END:variables
+
     
 }
