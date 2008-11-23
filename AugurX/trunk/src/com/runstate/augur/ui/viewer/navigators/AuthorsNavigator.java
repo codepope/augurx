@@ -114,8 +114,7 @@ public class AuthorsNavigator extends AbstractNavigator implements ListSelection
     }
     
     void getAuthor(String string) {
-        /*TODO THIS IS HARDWIRED TO CIX!!!*/
-        vch.doCommand(new VCShowAboutUser(string+"@cix"));
+        vch.doCommand(new VCShowAboutUser(string));
     }
 }
 

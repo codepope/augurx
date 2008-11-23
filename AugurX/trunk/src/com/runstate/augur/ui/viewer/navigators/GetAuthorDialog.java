@@ -18,6 +18,11 @@ public class GetAuthorDialog extends javax.swing.JDialog {
         this.anav=anav;
         initComponents();
     }
+
+    public String getAddress()
+    {
+        return authorName.getText()+"@"+(String)doorselector.getSelectedItem();
+    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -116,7 +121,7 @@ public class GetAuthorDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void okButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonPressed
-        anav.getAuthor(authorName.getText());
+        anav.getAuthor(getAddress());
         setVisible(false);
     }//GEN-LAST:event_okButtonPressed
 
