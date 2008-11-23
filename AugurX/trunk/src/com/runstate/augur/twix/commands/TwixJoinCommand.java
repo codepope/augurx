@@ -24,6 +24,7 @@ public class TwixJoinCommand extends TwixCommand implements JoinCommand
 	public TwixJoinCommand(Long doorid,String path)
 	{
 		super(doorid,null);
+                if (path.startsWith("/twix/")){path=path.replace("/twix/", "");}
 		this.path=path;
 	}
 	
@@ -77,8 +78,33 @@ public class TwixJoinCommand extends TwixCommand implements JoinCommand
 	
 	public boolean executeCommand(Door door, TwixSync cm, Gallery g, SSHConnection ssh)
 	{
-		// TODO
-		return false;
+		ssh.write("q\n q\n terse\n");
+                ssh.waitFor("M:");
+                ssh.write("opt term ec no Mark no q\n");
+                ssh.waitFor("M:");
+                ssh.write("clear\n");
+                ssh.waitFor("M:");
+                ssh.write("j "+path+"\n");
+                int rslt = ssh.waitFor(new String[]{"Register  (y/n)?", "R:","Topic?"});
+                switch(rslt){
+                        case 0 : // Not yet registered
+                            ssh.write("y\n");
+                            ssh.waitFor("Topic?");
+                            ssh.write("all\n");
+                            int rslt2 = ssh.waitFor(new String[]{"R:", "M:"});
+                            // R: is nomal 
+                            // M: is when there are no topics in the conf
+                            break;
+                        case 1 : // Already registered in the conf
+                            break;
+                        case 2 :
+                            //??
+                            break;
+                }
+                            
+                ssh.write("q\n");
+                ssh.waitFor("M:");
+		return true;
 	}
 
 }

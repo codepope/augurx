@@ -6,12 +6,18 @@
 
 package com.runstate.augur.twix.ui;
 
+import com.runstate.augur.controller.Controller;
+import com.runstate.augur.controller.Controller;
+import com.runstate.augur.controller.Door;
+import com.runstate.augur.gallery.GalleryException;
+import com.runstate.augur.twix.commands.TwixJoinCommand;
 import com.runstate.augur.twix.pathinfo.TwixRootPathInfo;
 import com.runstate.augur.ui.pathinfo.PathInfoUI;
 import com.runstate.util.swing.TableSorter;
 import java.awt.BorderLayout;
 import java.awt.FontMetrics;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -172,7 +178,11 @@ public class TwixRootPathInfoUI extends PathInfoUI implements TableModel {
 	 * @see #setValueAt
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		// TODO
+		if (columnIndex == 2)
+                {
+                    // Joined Column
+                    return true;
+                }
 		return false;
 	}
 	
@@ -215,7 +225,26 @@ public class TwixRootPathInfoUI extends PathInfoUI implements TableModel {
 	 * @see #isCellEditable
 	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// TODO
+		if (columnIndex==2)
+                {
+                    //Joined column
+                    if ((Boolean)aValue.equals(true)) //join Conf
+                    {
+                        int res=JOptionPane.showConfirmDialog(this,"Join " + getValueAt(rowIndex, 3) +"?","Augur",JOptionPane.YES_NO_OPTION);
+                        if(res==JOptionPane.YES_OPTION) 
+                        {
+                            try
+                            { 
+                                Door door=Controller.getController().getGallery().getDoorForPath("/twix");
+                                Controller.getController().getGallery().addCommand(new TwixJoinCommand(door.getDoorid(),(String)getValueAt(rowIndex, 3)));
+                    
+                            }
+                            catch (GalleryException e) {}
+                        }
+                    }
+                    else  //resign conf
+                    {}
+                }
 	}
 	
 	/**

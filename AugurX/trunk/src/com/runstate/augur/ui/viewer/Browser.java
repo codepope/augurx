@@ -917,7 +917,14 @@ public class Browser extends AugurPanel implements
                 if(res==JOptionPane.YES_OPTION) {
                     try {
                         Long doorid=Controller.getController().getGallery().getDoorForPath(parts[0]).getDoorid();
-                        Controller.getController().getGallery().addCommand(new CixJoinCommand(doorid,parts[0]));
+                        if (Controller.getController().getGallery().getDoorForPath(parts[0]).getDoorname().equals("twix"))
+                        {
+                            Controller.getController().getGallery().addCommand(new TwixJoinCommand(doorid,parts[0]));
+                        }
+                        if (Controller.getController().getGallery().getDoorForPath(parts[0]).getDoorname().equals("cix"))
+                        {
+                            Controller.getController().getGallery().addCommand(new CixJoinCommand(doorid,parts[0]));
+                        }
                     } catch (GalleryException e) {}
                 }
                 return; // null;
@@ -974,7 +981,14 @@ public class Browser extends AugurPanel implements
                     try {
                         Door d=Controller.getGallery().getDoorForPath(path);
                         
-                        Controller.getController().getGallery().addCommand(new CixJoinCommand(d.getDoorid(),path));
+                        if (d.getDoorname().equals("cix"))
+                        {
+                             Controller.getController().getGallery().addCommand(new CixJoinCommand(d.getDoorid(),path));
+                        }
+                        if (d.getDoorname().equals("twix"))
+                        {
+                             Controller.getController().getGallery().addCommand(new TwixJoinCommand(d.getDoorid(),path));
+                        }
                     } catch (GalleryException e) {}
                 }
                 return; // null;
