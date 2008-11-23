@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 public class AuthorsView extends AbstractViewPanel implements PoolEventListener {
 	
 	String auguraddress;
-	AuthorInfo ui;
+	AuthorInfo authorInfo;
 	
 	MessageStrip usercss;
 	HTMLPane htmlpane;
@@ -55,7 +55,7 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 //		usercss.setMenu(usercssmenu);
 		
 		htmlpane=new HTMLPane();
-		
+
 		add(BorderLayout.NORTH,usercss);
 		
 		add(BorderLayout.CENTER,new JScrollPane(htmlpane));
@@ -73,7 +73,7 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 		
 		if(ce.getPool().equals(AuthorInfo.getPoolName())) {
 			if(auguraddress.equals(ce.getKey())) {
-				ui=(AuthorInfo)ce.getPoolable();
+				authorInfo=(AuthorInfo)ce.getPoolable();
 				updateUser();
 			}
 		}
@@ -82,19 +82,19 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 	public boolean showUser(String newaddress) {
 		if(newaddress==null) {
 			auguraddress=null;
-			ui=null;
+			authorInfo=null;
 			return false;
 		}
 		else {
 			auguraddress=newaddress;
-			ui=Controller.getGallery().getAuthorInfo(auguraddress);
-			if(ui==null) {
+			authorInfo=Controller.getGallery().getAuthorInfo(auguraddress);
+			if(authorInfo==null) {
 				int res=JOptionPane.showConfirmDialog(this,"No userinfo for "+auguraddress+"\nDo you want to retrieve it?","Augur",JOptionPane.YES_NO_OPTION);
 				
 				if(res==JOptionPane.YES_OPTION) {
 					try {
 						doCommand(new VCRefreshUser(auguraddress));
-						ui=Controller.getGallery().getAuthorInfo(auguraddress);
+						authorInfo=Controller.getGallery().getAuthorInfo(auguraddress);
 					}
 					catch (GalleryException e) {}
 				}
@@ -114,15 +114,15 @@ public class AuthorsView extends AbstractViewPanel implements PoolEventListener 
 		}
 		
 		
-		if(ui==null) {
+		if(authorInfo==null) {
 			
 			
 			usercss.setMsg(auguraddress+" not retrieved");
 			htmlpane.setHTML("");
 		}
 		else {
-			usercss.setMsg(ui.getHTMLHeading());
-			htmlpane.setHTML(ui.getHTML());
+			usercss.setMsg(authorInfo.getHTMLHeading());
+			htmlpane.setHTML(authorInfo.getHTML());
 			htmlpane.setCaretPosition(0);
 		}
 	}

@@ -9,6 +9,7 @@ import com.runstate.augur.controller.Controller;
 import com.runstate.augur.gallery.models.AuthorInfoListModel;
 import com.runstate.augur.ui.viewer.MessageStrip;
 import com.runstate.augur.ui.viewer.BrowserCommandHandler;
+import com.runstate.augur.ui.viewer.commands.VCRefreshUser;
 import com.runstate.augur.ui.viewer.commands.VCShowAboutUser;
 import com.runstate.util.ImageCache;
 import com.runstate.util.swing.JMenuButton;
@@ -57,7 +58,8 @@ public class AuthorsNavigator extends AbstractNavigator implements ListSelection
         }
         
         public void actionPerformed(ActionEvent evt) {
-            
+           String auguraddress=(String)userlist.getSelectedValue();
+           doCommand(new VCRefreshUser(auguraddress));
         }
     };
     

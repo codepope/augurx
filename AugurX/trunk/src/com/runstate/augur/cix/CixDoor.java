@@ -161,7 +161,8 @@ public class CixDoor extends Door
 	public String getBody(Msg m)
 	{
 		if(m.isDeleted()) return "Deleted Message";
-		
+		if(m.getBodystart()==-1) return "Corrupted Message";
+        
 		return m.getText().substring(m.getBodystart());
 	}
 	
