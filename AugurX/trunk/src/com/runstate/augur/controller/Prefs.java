@@ -17,7 +17,7 @@ public class Prefs
 	public static final String M_C_TIMEOUT="missions.cix.timeout";
 	public static final String M_C_MSGSIZE="missions.cix.msgsize";
 	 
-        public static final String M_T_USERNAME="missions.twix.username";
+    public static final String M_T_USERNAME="missions.twix.username";
 	public static final String M_T_PASSWORD="missions.twix.password";
 	public static final String M_T_ALWAYSRESTORE="missions.twix.alwaysrestore";
 	public static final String M_T_ALWAYSON="missions.twix.alwayson";

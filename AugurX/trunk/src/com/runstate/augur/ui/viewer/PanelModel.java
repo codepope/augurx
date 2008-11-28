@@ -1,13 +1,12 @@
 /**
  * PanelModel.java
  *
- * @author Created by Omnicore CodeGuide
+ * @author Dj
  */
 
 package com.runstate.augur.ui.viewer;
 
 import com.runstate.augur.ui.viewer.navigators.AbstractNavigator;
-import java.util.Arrays;
 import javax.swing.AbstractListModel;
 
 public class PanelModel extends AbstractListModel
@@ -31,7 +30,6 @@ public class PanelModel extends AbstractListModel
 	
 	public void updated(AbstractNavigator sp,String status)
 	{
-		System.out.println("Updated fired");
 		for(int i=0;i<panels.length;i++)
 		{
 			if(sp==panels[i])
@@ -40,7 +38,6 @@ public class PanelModel extends AbstractListModel
 				return;
 			}
 		}
-		System.out.println("Missed!");
 	}
 	
 	/**

@@ -584,7 +584,26 @@ public class Browser extends AugurPanel implements
         
         AugurPanelManger.getManager().addToDesktop(c);
     }
-    
+
+    public void cmdSyncAllStarted() {
+        sync_action_cix.setEnabled(false);
+        sync_action_twix.setEnabled(false);
+        sync_action_all.setEnabled(false);
+    }
+
+    public void cmdSyncAllDone(int cixresult,int twixresult) {
+        sync_action_cix.setEnabled(true);
+        sync_action_twix.setEnabled(true);
+        sync_action_all.setEnabled(true);
+        if(cixresult+twixresult>0) JOptionPane.showMessageDialog(this,"CIX sync done with "+cixresult+" new messages\nTWIX sync done with "+twixresult+" new messages");
+    }
+
+    public void cmdSyncAllError() {
+        sync_action_cix.setEnabled(true);
+        sync_action_twix.setEnabled(true);
+        sync_action_all.setEnabled(true);
+    }
+
     public void cmdSyncCixStarted() {
         sync_action_cix.setEnabled(false);
         sync_action_all.setEnabled(false);
@@ -592,28 +611,29 @@ public class Browser extends AugurPanel implements
     
     public void cmdSyncCixDone(int i) {
         sync_action_cix.setEnabled(true);
-        if(sync_action_twix.isEnabled()) { sync_action_all.setEnabled(true); }
+        sync_action_all.setEnabled(true);
         if(i>0) JOptionPane.showMessageDialog(this,"CIX sync done with "+i+" new messages");
     }
     
     public void cmdSyncCixError() {
         sync_action_cix.setEnabled(true);
-        if(sync_action_twix.isEnabled()) { sync_action_all.setEnabled(true); }
+        sync_action_all.setEnabled(true);
     }
+
     public void cmdSyncTwixStarted() {
-        sync_action_all.setEnabled(false);
         sync_action_twix.setEnabled(false);
+        sync_action_all.setEnabled(false);
     }
     
     public void cmdSyncTwixDone(int i) {
         sync_action_twix.setEnabled(true);
-         if(sync_action_cix.isEnabled()) { sync_action_all.setEnabled(true); }
+        sync_action_all.setEnabled(true);
         if(i>0) JOptionPane.showMessageDialog(this,"Twix sync done with "+i+" new messages");
     }
     
     public void cmdSyncTwixError() {
         sync_action_twix.setEnabled(true);
-        if(sync_action_cix.isEnabled()) { sync_action_all.setEnabled(true); }
+        sync_action_all.setEnabled(true);
     }
     
     int currentview=-1;

@@ -236,7 +236,7 @@ public class TwixRootPathInfoUI extends PathInfoUI implements TableModel {
                             try
                             { 
                                 Door door=Controller.getController().getGallery().getDoorForPath("/twix");
-                                Controller.getController().getGallery().addCommand(new TwixJoinCommand(door.getDoorid(),(String)getValueAt(rowIndex, 3)));
+                                Controller.getController().getGallery().addCommand(new TwixJoinCommand(door.getDoorid(),"/twix/"+(String)getValueAt(rowIndex, 3)));
                     
                             }
                             catch (GalleryException e) {}
