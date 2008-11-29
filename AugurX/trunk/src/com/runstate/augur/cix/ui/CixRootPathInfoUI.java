@@ -7,6 +7,7 @@
 package com.runstate.augur.cix.ui;
 
 import com.runstate.augur.cix.commands.CixJoinCommand;
+import com.runstate.augur.cix.commands.CixResignCommand;
 import com.runstate.augur.cix.pathinfo.CixRootPathInfo;
 import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Door;
@@ -305,7 +306,20 @@ public class CixRootPathInfoUI extends PathInfoUI implements TableModel {
                         }
                     }
                     else  //resign conf
-                    {}
+                    {
+                        int res=JOptionPane.showConfirmDialog(this,"Resign " + getValueAt(rowIndex, 3) +"?","Augur",JOptionPane.YES_NO_OPTION);
+                        if(res==JOptionPane.YES_OPTION)
+                        {
+                            try
+                            {
+                                String confname="/cix/"+(String)getValueAt(rowIndex, 3);
+                                Door door=Controller.getController().getGallery().getDoorForPath("/cix");
+                                Long bundleid=Controller.getController().getGallery().getBundlemanager().getBundle(confname).getBundleid();
+                                Controller.getController().getGallery().addCommand(new CixResignCommand(door.getDoorid(),bundleid));
+                            }
+                            catch (GalleryException e) {}
+                        }
+                    }
                 }
 	}
 	
