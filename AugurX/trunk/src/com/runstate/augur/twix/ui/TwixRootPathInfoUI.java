@@ -10,7 +10,9 @@ import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Controller;
 import com.runstate.augur.controller.Door;
 import com.runstate.augur.gallery.GalleryException;
+import com.runstate.augur.gallery.commands.Command;
 import com.runstate.augur.twix.commands.TwixJoinCommand;
+import com.runstate.augur.twix.commands.TwixResignCommand;
 import com.runstate.augur.twix.pathinfo.TwixRootPathInfo;
 import com.runstate.augur.ui.pathinfo.PathInfoUI;
 import com.runstate.util.swing.TableSorter;
@@ -243,7 +245,21 @@ public class TwixRootPathInfoUI extends PathInfoUI implements TableModel {
                         }
                     }
                     else  //resign conf
-                    {}
+                    {
+                        int res=JOptionPane.showConfirmDialog(this,"Resign from " + getValueAt(rowIndex, 3) +"?","Augur",JOptionPane.YES_NO_OPTION);
+                        if(res==JOptionPane.YES_OPTION) 
+                        {
+                            try
+                            { 
+                                Door door=Controller.getController().getGallery().getDoorForPath("/twix");
+                                Command newResignCommand = new TwixResignCommand(door.getDoorid(),"/twix/"+(String)getValueAt(rowIndex, 3));
+                                Controller.getController().getGallery().addCommand(newResignCommand);
+                    
+                            }
+                            catch (GalleryException e) {
+                            System.out.println(e.getMessage());}
+                        }
+}
                 }
 	}
 	

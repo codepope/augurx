@@ -12,22 +12,26 @@ import com.runstate.augur.gallery.Gallery;
 import com.runstate.augur.gallery.commands.Parameter;
 import com.runstate.augur.gallery.commands.commands.ResignCommand;
 import com.runstate.augur.gallery.commands.parameters.BundleParameter;
+import com.runstate.augur.gallery.commands.parameters.StringParameter;
 import com.runstate.util.ssh.SSHConnection;
 
 public class TwixResignCommand extends TwixCommand implements ResignCommand
 {
-
 	static final long serialVersionUID = -8603595765882584698L;
-	
-	public TwixResignCommand(Long doorid,Long bundleid)
+
+        String path;
+
+	public TwixResignCommand(Long doorid, String path)
 	{
-		super(doorid,bundleid);
+            	super(doorid,null);
+                if (path.startsWith("/twix/")){path=path.replace("/twix/", "");}
+		this.path=path;
 	}
-	
+        
     @Override
 	public String toString()
 	{
-		return "Twix:Resign "+getBundleName();
+		return "Twix:Resign "+path;
 	}
 	
     @Override
@@ -40,7 +44,7 @@ public class TwixResignCommand extends TwixCommand implements ResignCommand
 		public Parameter[] getParameters() {
 		Parameter[] p=new Parameter[1];
 		
-		p[0]=new BundleParameter("path","Path",getBundleName());
+		p[0]=new BundleParameter("path","Path",path);
 		
 		return p;
 	}
@@ -53,10 +57,10 @@ public class TwixResignCommand extends TwixCommand implements ResignCommand
 			String name=p[i].getName();
 			
 			if(name.equals("path")) {
-				BundleParameter pp=(BundleParameter)p[i];
-				if(!getBundleName().equals(pp.getBundleName())) {
-					//setAugurPathRef(pp.getBundleName());
-					//changed=true;
+				StringParameter pp=(StringParameter)p[i];
+				if(!path.equals(pp.getValue())) {
+					path=pp.getValue();
+					changed=true;
 				}
 			}
 		}
@@ -69,7 +73,7 @@ public class TwixResignCommand extends TwixCommand implements ResignCommand
 		
 	public String batchCommand(Door door)
 	{
-		return "resign "+door.getNativePath(getBundleName())+"\n";
+		return "resign "+door.getNativePath(path)+"\n";
 	}
 	
 	/**
@@ -85,7 +89,27 @@ public class TwixResignCommand extends TwixCommand implements ResignCommand
 	 */
 	public boolean executeCommand(Door door, TwixSync cm, Gallery g, SSHConnection ssh)
 	{
-		return false;
+            	ssh.write("q\n q\n terse\n");
+                ssh.waitFor("M:");
+                ssh.write("opt term ec no Mark no q\n");
+                ssh.waitFor("M:");
+                ssh.write("clear\n");
+                ssh.waitFor("M:");
+                ssh.write("res "+path+"\n");
+                int rslt = ssh.waitFor(new String[]{"(y/n)?", "You are not a member of conference","Topic?","is closed."});
+                switch(rslt){
+                        case 0 : // Normal resignation
+                            ssh.write("y\n");
+                            ssh.waitFor("Resigning from conference");
+                            break;
+                       case 1 : 
+                            // Not a member of the conf - same message if the conf doesn't exist
+                            door.fireDoorMsg("Can't resign conference "+ path +". Not currently a member");
+                            break;
+                            
+                }
+
+		return true;
 	}
 	
 	
