@@ -958,9 +958,11 @@ public  class Gallery {
     
     private ArrayList<Msg> makeResultsToMsgArrayList(ResultSet rs) throws SQLException {
         ArrayList<Msg> a=new ArrayList<Msg>();
+        Msg m = makeResultToMsg(rs);
+        a.add(m);
         
         while(rs.next()) {
-            Msg m = makeResultToMsg(rs);
+            m = makeResultToMsg(rs);
             a.add(m);
         }
         
