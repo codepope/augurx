@@ -636,7 +636,7 @@ public class TwixSync extends Sync implements TransferProtocolUser,Runnable {
         }
 
         sshconnection.write("terse\n");
-        sshconnection.write("opt term pagelen 0 term ec no term width 255 term I yes q\n");
+        sshconnection.write("opt term pagelen 0 term ec no term width 255 term I no q\n");
 //        sshconnection.write("opt term I yes q\n");
 
         sshconnection.write("opt Blink yes q\n");
