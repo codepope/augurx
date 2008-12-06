@@ -9,6 +9,7 @@ package com.runstate.augur.twix.commands;
 import com.runstate.augur.twix.sync.TwixSync;
 import com.runstate.augur.controller.Door;
 import com.runstate.augur.gallery.Gallery;
+import com.runstate.augur.gallery.SyncEvent;
 import com.runstate.augur.gallery.commands.Parameter;
 import com.runstate.augur.gallery.commands.commands.JoinCommand;
 import com.runstate.augur.gallery.commands.parameters.BundleParameter;
@@ -85,7 +86,7 @@ public class TwixJoinCommand extends TwixCommand implements JoinCommand
                 ssh.write("clear\n");
                 ssh.waitFor("M:");
                 ssh.write("j "+path+"\n");
-                int rslt = ssh.waitFor(new String[]{"Register  (y/n)?", "R:","Topic?"});
+                int rslt = ssh.waitFor(new String[]{"Register  (y/n)?", "R:","Topic?","is closed."});
                 switch(rslt){
                         case 0 : // Not yet registered
                             ssh.write("y\n");
@@ -99,6 +100,10 @@ public class TwixJoinCommand extends TwixCommand implements JoinCommand
                             break;
                         case 2 :
                             //??
+                            break;
+                        case 3 :
+                            // Conf is closed conf
+                            door.fireDoorMsg("Cannot join conference " + path + ". It's closed.");
                             break;
                 }
                             
