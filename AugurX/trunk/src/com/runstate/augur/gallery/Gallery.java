@@ -560,10 +560,12 @@ public  class Gallery {
             searchPstmt.setLong(1,bundleid.longValue());
             searchPstmt.setString(2,"%"+term+"%");
             ResultSet rs=searchPstmt.executeQuery();
-            if(rs.next())
-            {
+            
+            //Fix for Issue 28 - lines commented
+            //if(rs.next())
+            //{
                return makeResultsToMsgArrayList(rs);
-            }
+            //}
         }
         catch(SQLException sqe)
         {
@@ -958,11 +960,9 @@ public  class Gallery {
     
     private ArrayList<Msg> makeResultsToMsgArrayList(ResultSet rs) throws SQLException {
         ArrayList<Msg> a=new ArrayList<Msg>();
-        Msg m = makeResultToMsg(rs);
-        a.add(m);
-        
+  
         while(rs.next()) {
-            m = makeResultToMsg(rs);
+            Msg m = makeResultToMsg(rs);
             a.add(m);
         }
         
