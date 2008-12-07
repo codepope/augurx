@@ -313,9 +313,12 @@ public class TwixSync extends Sync implements TransferProtocolUser,Runnable {
             if(rc instanceof TwixCommand) {
                 TwixCommand cc=(TwixCommand)rc;
                 if(!cc.isInfo()) {
-                   cc.executeCommand(getDoor(), this, getGallery(), sshconnection);
+                   boolean commandSuccessful = cc.executeCommand(getDoor(), this, getGallery(), sshconnection);
                     //scriptbuffer.append(cc.batchCommand(getDoor()));
-                    todelete.add(cc);
+                    if (commandSuccessful)
+                    {
+                        todelete.add(cc);
+                    }
                 }
             }
             

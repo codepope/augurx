@@ -133,29 +133,49 @@ public class TwixSayCommand extends TwixCommand implements SayCommand {
                 ssh.write("clear\n");
                 ssh.waitFor("M:");
                 ssh.write("j "+path+"\n");
-                ssh.waitFor("R:");
-		ssh.write("say\n");
-                ssh.waitFor("TITLE:");
-                ssh.write(StringW.wordWrap(getText(),70));
-                ssh.write("\n");
-                ssh.write(".\n");
-                ssh.waitFor("A:");
-                ssh.write("a\n");
-                String messageDelivered = ssh.waitForAndReturnAll("added.");
-                String realMsg = messageDelivered.substring(1, messageDelivered.indexOf("added"));
-                //Pattern msgNumberPtn = Pattern.compile("^[^0-9]+([0-9]+)(.*\r\n)^(.*)$",Pattern.MULTILINE);
-                Pattern msgNumberPtn = Pattern.compile("^[^0-9]+([0-9]+)(.*)$");
-		Matcher m=msgNumberPtn.matcher(realMsg);
-                if (m.matches())
-                {
-                    msgNumber = m.group(1);
-                }
-                ssh.write("q\n");
-                ssh.waitFor("M:");
-//                TwixGetCommand tgc = new TwixGetCommand(door.getDoorid(),getBundleid(), new Long(msgNumber)) ;
-//                tgc.executeCommand(door, cm, g, ssh);
+                boolean joined = false;
+                int rslt = ssh.waitFor(new String[]{"R:","Not registered in"}); 
+                  switch(rslt){
+                        case 0 : // Normal Say
+                            joined = true;
+                            break;
+                       case 1 : 
+                           joined=false;
+                           break;
+                  }
+                 if (joined == true)
+                 {
+                    ssh.write("say\n");
+                    ssh.waitFor("TITLE:");
+                    ssh.write(StringW.wordWrap(getText(),70));
+                    ssh.write("\n");
+                    ssh.write(".\n");
+                    ssh.waitFor("A:");
+                    ssh.write("a\n");
+                    String messageDelivered = ssh.waitForAndReturnAll("added.");
+                    String realMsg = messageDelivered.substring(1, messageDelivered.indexOf("added"));
+                    //Pattern msgNumberPtn = Pattern.compile("^[^0-9]+([0-9]+)(.*\r\n)^(.*)$",Pattern.MULTILINE);
+                    Pattern msgNumberPtn = Pattern.compile("^[^0-9]+([0-9]+)(.*)$");
+                    Matcher m=msgNumberPtn.matcher(realMsg);
+                    if (m.matches())
+                    {
+                        msgNumber = m.group(1);
+                    }
+                    ssh.write("q\n");
+                    ssh.waitFor("M:");
+                    //TwixGetCommand tgc = new TwixGetCommand(door.getDoorid(),getBundleid(), new Long(msgNumber)) ;
+                    //tgc.executeCommand(door, cm, g, ssh);
                     
-		return true;
+                    return true;
+                 }
+                 else
+                 {
+                    ssh.write("n\n");
+                    ssh.waitFor("M:");
+                    door.fireDoorMsg("Can't Say in "+path+". Not joined to conf.");
+                    return false;
+                 
+                 }
 	}
 	
 
