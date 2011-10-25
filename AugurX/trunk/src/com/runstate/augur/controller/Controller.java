@@ -106,6 +106,7 @@ public class Controller implements GalleryEventListener,AugurPanelManagerListene
 		jf.getContentPane().setLayout(new BorderLayout());
 		jf.getContentPane().add(BorderLayout.SOUTH,prog);
 		jf.getContentPane().add(BorderLayout.CENTER,busymessage);
+		jf.setIconImage(i.getImage());
 		
 		jf.pack();
 		jf.setLocationRelativeTo(parent);

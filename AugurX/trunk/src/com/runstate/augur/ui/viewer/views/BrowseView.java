@@ -637,7 +637,7 @@ public class BrowseView extends AbstractViewPanel implements BundleManagerListen
 		
 		if(knotid==null) return false;
 		
-		if(msgview.getMsg().isUnread()) return msgview.pagedown();
+		if(msgview.getMsg() != null && msgview.getMsg().isUnread()) return msgview.pagedown();
 		
 		return false;
 	}
