@@ -1,0 +1,32 @@
+# Hints and Tips #
+
+## Tips for Users ##
+
+### Browser configuration ###
+When running on Linux http links won't work unless your preferred browser is configured in Gnome. If using firefox something like
+```
+gconftool --type string --set /desktop/gnome/url-handlers/http/command '/usr/bin/firefox "%s"' 
+```
+should do the job but you do need to specify the correct full path.
+
+This may not work on newer distro's - the library that Augur relies upon has a hard coded reference to an obsolete version of libstdc++ and an AWT library that seems to no longer exist.
+
+### Launching AugurX ###
+As most messages on CiX are posted with Ameol which uses the CP1252 character set you should launch Augur with that specified as the default encoding for the java VM.This can be acheived by using the command `java -Dfile.encoding=Cp1252 -jar /path/to/AugurX.jar`, obviosly /path/to/AugurX.jar should be modified as appropriate.
+
+###  ###
+
+## Tips for Developers ##
+
+### Getting The Source ###
+
+The instructions on the source tab for how to do a checkout don't account correctly for the svn directory structure. The correct command is
+
+```
+svn ls http://augurx.googlecode.com/svn/AugurX/trunk/
+```
+
+### Character Encodings ###
+There are some places in the AugurX source code where international characters are used. As different platforms differ in their handling of default international character sets it is recommended to explicitly specify the character set in use.
+
+In Netbeans you can do this by selecting Tools->Options then Advanced then under Editiong->Java Sources set default encoding to Cp1252.
